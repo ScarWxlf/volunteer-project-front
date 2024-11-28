@@ -1,8 +1,10 @@
-export default function Home() {
+import Home from '../components/home/home';
+
+export default function Main() {
 
   return (
     <div className="flex flex-grow">
-      <h1>BEB</h1>
+      <Home/>
     </div>
   );
 }

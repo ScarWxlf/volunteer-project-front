@@ -6,7 +6,7 @@ import x from '/public/social/x.svg'
 
 export default function Footer() {
   return (
-    <div className="flex flex-col justify-center gap-12 h-80 bg-black text-white">
+    <div className="flex flex-col flex-none justify-center gap-12 h-80 bg-black text-white">
       <div className="flex justify-center gap-56 px-20">
         <div className="flex flex-col gap-3 w-1/4">
           <div className="flex gap-1">
