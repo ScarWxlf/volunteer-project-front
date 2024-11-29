@@ -1,10 +1,14 @@
+'use client'
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import logo from "/public/logo.svg";
 import facebook from '/public/social/facebook.svg'
 import instagram from '/public/social/instagram.svg'
 import x from '/public/social/x.svg'
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/signin" || pathname === "/signup") return null;
   return (
     <div className="flex flex-col flex-none justify-center gap-12 h-80 bg-black text-white">
       <div className="flex justify-center gap-56 px-20">

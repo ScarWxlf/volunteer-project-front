@@ -16,8 +16,8 @@ export default function Header() {
                 <Link href='/contact'>Contact us</Link>
             </div>
             <div className="flex gap-12">
-                <button>Sign in</button>
-                <button>Sign up</button>
+                <a href="/signin"><button>Sign in</button></a>
+                <a href="/signup"><button>Sign up</button></a>
             </div>
         </div>
     )
