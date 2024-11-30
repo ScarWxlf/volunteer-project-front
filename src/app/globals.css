@@ -16,3 +16,29 @@
     background: rgb(0, 0, 0); /*#22c55e*/
     border-radius: 10px;
   }
+
+  .link {
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.3s;
+  }
+  
+  .link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #22c55e;
+    transition: width 0.3s ease;
+    transform-origin: left;
+  }
+  
+  .link:hover {
+    color: #22c55e;
+  }
+  
+  .link:hover::before {
+    width: 100%;
+  }
