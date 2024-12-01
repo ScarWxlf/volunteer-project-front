@@ -6,7 +6,6 @@ export default function CauseCard() {
     const raised = 458;
     const donations = 14;
     const progress = (raised / goal) * 100;
-    console.log(progress);
     return(
         <div className='flex flex-col w-full rounded-xl shadow-lg'>
             <Image className='w-full rounded-t-xl' src="/home.jpg" alt="cause" width={300} height={200}/>

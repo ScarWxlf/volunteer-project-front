@@ -4,8 +4,8 @@
 <path d="M0 3.8147e-06H48V48H0V3.8147e-06Z" fill="white"/>
 </mask>
 <g mask="url(#mask0_0_1993)">
-<path d="M46.6088 24.0081C46.6088 36.4905 36.4898 46.6094 24.0075 46.6094C11.5252 46.6094 1.40625 36.4905 1.40625 24.0081C1.40625 11.5258 11.5252 1.40687 24.0075 1.40687C36.4898 1.40687 46.6088 11.5258 46.6088 24.0081Z" stroke="#FD7E14" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M37.727 19.0799H28.9592V10.3122H19.135V19.0799H10.3672V28.9042H19.135V37.6719H28.9592V28.9042H37.727V19.0799Z" stroke="#FD7E14" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M46.6088 24.0081C46.6088 36.4905 36.4898 46.6094 24.0075 46.6094C11.5252 46.6094 1.40625 36.4905 1.40625 24.0081C1.40625 11.5258 11.5252 1.40687 24.0075 1.40687C36.4898 1.40687 46.6088 11.5258 46.6088 24.0081Z" stroke="#22c55e" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M37.727 19.0799H28.9592V10.3122H19.135V19.0799H10.3672V28.9042H19.135V37.6719H28.9592V28.9042H37.727V19.0799Z" stroke="#22c55e" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
 <defs>

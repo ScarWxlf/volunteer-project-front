@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import FadeInSection from "../fadeSection/fadeSection";
 
 export default function CarouselSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,6 +42,7 @@ export default function CarouselSection() {
   return (
     <div className="w-full flex flex-col items-center bg-gray-200 p-5">
       {/* Slides */}
+      <FadeInSection className="w-full flex flex-col items-center">
       <div className="overflow-hidden w-9/12 relative">
         <div
           className="flex transition-transform duration-500"
@@ -93,6 +95,7 @@ export default function CarouselSection() {
           ❯
         </button>
       </div>
+      </FadeInSection>
 
       {/* Navigation Buttons */}
 
