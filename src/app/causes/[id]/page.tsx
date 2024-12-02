@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import SimilarCauseCard from "@/components/causeCard/similarCauseCard";
 import PaymentForm from "./paymentForm";
 export default function DetailsPage() {
@@ -8,13 +10,23 @@ export default function DetailsPage() {
   const donations = 14;
   const progress = (raised / goal) * 100;
 
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<number>(0);
+  const [customAmount, setCustomAmount] = useState<number>(0);
+
+  const displayedAmount = amount === 1 ? customAmount : amount;
   return (
     <div className="flex flex-col px-32 my-8">
+      <div>
+        <Link className="text-gray-500" href="/">
+          Home
+        </Link>
+        <span className="mx-2">{">"}</span>
+        <Link href="/causes">Causes</Link>
+      </div>
       <h1 className="text-5xl font-bold my-5">There is title</h1>
       <div className="flex gap-4">
         <div className="w-2/3">
-          <img className="w-full rounded-3xl" src="/home.jpg" alt="title" />
+          <Image className="w-full rounded-3xl" layout="responsive" src="/home.jpg" alt="title" width={0} height={0}/>
           <div className="h-4 w-full my-5 bg-gray-200 rounded-xl">
             <div
               className="h-4 bg-green-500 rounded-xl"
@@ -142,6 +154,11 @@ export default function DetailsPage() {
                 onClick={() => {
                   setAmount(1);
                 }}
+                onChange={(e) => {
+                  const target = e.target as HTMLInputElement;
+                  if (target.value === "") return setCustomAmount(0);
+                  setCustomAmount(Number(target.value));
+                }}
                 type="number"
                 name="customAmount"
                 className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-full font-bold mt-2 p-4 text-center rounded-full text-xl bg-gray-100"
@@ -177,7 +194,102 @@ export default function DetailsPage() {
               </label>
             </div>
           </div>
-          <PaymentForm/>
+          <PaymentForm />
+          <div className="w-full p-5">
+            <h1 className="text-2xl font-bold">Personal Information</h1>
+            <div className="w-full flex justify-between gap-10 mt-5 font-medium">
+              <label htmlFor="firstname" className="flex flex-col w-1/2">
+                First Name
+                <input
+                  type="text"
+                  name="firstname"
+                  id="firstname"
+                  placeholder="First Name"
+                  className="w-full p-2 mt-2 rounded-xl bg-gray-100 font-normal"
+                />
+              </label>
+              <label htmlFor="lastname" className="flex flex-col w-1/2">
+                Last Name
+                <input
+                  type="text"
+                  name="lastname"
+                  id="lastname"
+                  placeholder="Last Name"
+                  className="w-full p-2 mt-2 rounded-xl bg-gray-100 font-normal"
+                />
+              </label>
+            </div>
+            <label htmlFor="email" className="flex flex-col font-medium mt-3">
+              Email Address
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email Address"
+                className="w-full p-2 mt-2 rounded-xl bg-gray-100 font-normal"
+              />
+            </label>
+          </div>
+          <div className="flex justify-between w-full p-5 items-center">
+            <h1 className="text-2xl font-bold">
+              Donation Total:{" "}
+              <span className="text-green-500">${displayedAmount}</span>
+            </h1>
+            <button
+              onClick={() => {
+                console.log(displayedAmount);
+              }}
+              className="bg-green-500 text-white text-lg font-bold rounded-3xl px-12 py-4 transition-transform transform hover:scale-105 hover:bg-green-600"
+            >
+              DONATE NOW
+            </button>
+          </div>
+          <div className="w-full">
+            <h1 className="text-3xl font-bold">Desctiprion</h1>
+            <p className="my-4">
+              Urna velit pharetra pellentesque magna eget. Ut egestas est id
+              netus. Facilisis mollis morbi ultrices ac tellus vitae pulvinar.
+              Egestas sagittis nec et arcu enim ac. Vivamus a dignissim nulla
+              ornare sit aliquam elementum blandit. Leo in sem pellentesque
+              viverra malesuada viverra eget aliquam. Diam mi dolor adipiscing
+              pellentesque nec at. Ut nisi faucibus ultrices etiam tortor vitae
+              eros. Nec laoreet felis egestas ultrices a quis turpis sit. Eget
+              semper commodo pellentesque eget orci tincidunt commodo facilisi
+              ultricies. Nec mi in augue dolor sit convallis habitant ut
+              accumsan. Ultrices neque diam id aliquam lobortis est faucibus
+              sed. Dolor nibh arcu ornare mi donec suspendisse nisl nullam.
+            </p>
+            <Image
+              src="/home.jpg"
+              alt="title"
+              layout="responsive"
+              width={0}
+              height={0}
+              className="rounded-2xl"            
+            />
+            <p className="my-4">
+              Nunc tortor et a ornare et placerat. Tellus in ultricies risus
+              accumsan turpis id nam. Maecenas proin sodales diam vel mauris
+              facilisis arcu semper. Mi accumsan gravida dignissim turpis
+              sollicitudin. At auctor sed facilisi massa amet. Est morbi aliquam
+              sed orci. Pulvinar aliquam sed egestas tempus aliquet
+              sollicitudin. Lectus et rhoncus venenatis interdum lectus nam.
+              Amet curabitur cursus pulvinar nisl id morbi adipiscing. Nunc eget
+              arcu enim ac pellentesque integer bibendum augue. Ut amet tortor
+              auctor hendrerit. Massa at amet nisl mauris vulputate. Accumsan
+              quis vel habitasse arcu nisi sed. Pharetra malesuada velit iaculis
+              urna eu. Luctus lobortis lacus metus nec ullamcorper. Arcu nisl
+              odio elit nunc. Arcu amet imperdiet cras volutpat. Facilisis
+              euismod bibendum urna eu feugiat. Et morbi mauris ultrices massa
+              tellus purus suspendisse nec. Magnis tempor aliquam elementum
+              imperdiet posuere. Quis arcu ultricies id quisque leo pulvinar
+              augue sit. Arcu ultricies malesuada lectus nulla est nunc integer
+              pellentesque magna. Egestas malesuada faucibus arcu nunc elit leo
+              quis interdum. Ac vel in commodo accumsan mollis cras massa
+              posuere eget. Condimentum posuere velit cras velit tortor
+              ridiculus sit. Lectus augue libero etiam sed nisl.
+            </p>
+          </div>
         </div>
         <div className="w-1/3">
           <div className="h-96 text-center text-2xl font-bold">
