@@ -1,4 +1,4 @@
-"use clietn";
+"use client";
 import CauseCard from "@/components/causeCard/causeCard";
 
 const logoCards = [
@@ -45,7 +45,23 @@ export default function CausesPage() {
         )}
       </div>
       <div className="w-full">
-        <h1 className="text-4xl font-bold px-32 mt-20">All Causes</h1>
+        <h1 className="px-32 text-4xl font-bold mt-5">Filters</h1>
+        <div className="flex px-32 mt-3 w-full">
+          <div className="flex flex-col bg-gray-100 p-4 rounded-2xl">
+            <h1 className="text-xl">Emergency</h1>
+            <label className="inline-flex items-center mt-2 relative">
+                <input
+                  type="checkbox"
+                  className="peer appearance-none h-5 w-5 text-green-600"
+                  name="emergency"
+                />
+                <span className="absolute h-5 w-5 rounded-xl border transition-all duration-500 border-black peer-checked:bg-green-500 peer-checked:border-none"></span>
+                <span className="absolute h-2.5 w-2.5 rounded-xl left-[5px] transition-all duration-500 peer-checked:bg-white"></span>
+                <span className="ml-2">Yes</span>
+              </label>
+          </div>
+        </div>
+        <h1 className="text-4xl font-bold px-32 mt-10">All Causes</h1>
         <div className="grid grid-cols-3 gap-12 px-32 my-8 w-full place-items-center">
           <CauseCard/>
           <CauseCard/>
