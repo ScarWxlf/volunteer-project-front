@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 export default function Header() {
     const pathname = usePathname();
+    if(pathname === '/signin' || pathname === '/signup') return null;
     return(
         <div className="flex items-center flex-none justify-around h-20 bg-black text-white">
             <Link className='flex text-center gap-1 text-xl font-bold' href='/'>
