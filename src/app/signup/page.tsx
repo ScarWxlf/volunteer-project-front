@@ -91,7 +91,7 @@ export default function SignUpPage() {
             <span className="px-4 text-black text-sm">Or Sign Up with</span>
             <div className="border-t border-black flex-grow"></div>
           </div>
-          <button className="bg-white p-1 rounded-xl shadow-md border-r border-b border-gray-400 hover:scale-105"> <img src="/signUp/google.svg" alt="" /></button>
+          <button className="bg-white p-1 rounded-xl shadow-md border-r border-b border-gray-400 hover:scale-105"> <img src="/google.svg" alt="google-icon" /></button>
         </div>
       </div>
     </div>
