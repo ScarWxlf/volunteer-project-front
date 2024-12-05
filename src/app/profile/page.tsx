@@ -1,26 +1,85 @@
 "use client";
 import Image from "next/image";
+import useHash from "../../hooks/useHash";
+
 export default function Profile() {
+  const hash = useHash();
   return (
     <div className="flex flex-grow w-full px-32 py-10 bg-gray-100 gap-5">
-      <div className="bg-white rounded-xl shadow-lg w-1/5 fixed py-8 px-5">
+      <div className="bg-white rounded-xl shadow-lg w-[25%] fixed p-5 left-12">
         <div className="flex flex-col gap-5">
-          <a href="#about-me" className="hover:text-green-500">
+          <a
+            href="#about-me"
+            className="flex gap-2 hover:text-green-600 text-lg items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill={`${hash === "#about-me" ? "green" : "currentColor"}`}
+              className="bi bi-file-earmark-person-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0m2 5.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12s5 1.755 5 1.755" />
+            </svg>
             About me
           </a>
-          <a href="#account-name" className="hover:text-green-500">
-          Account Name
+          <a
+            href="#account-name"
+            className="flex gap-2 hover:text-green-600 text-lg items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill={`${hash === "#account-name" ? "green" : "currentColor"}`}
+              className="bi bi-person-bounding-box"
+              viewBox="0 0 16 16"
+            >
+              <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5" />
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+            </svg>
+            Account Name
           </a>
-          <a href="#edit-profile" className="hover:text-green-500">
+          <a
+            href="#edit-profile"
+            className="flex gap-2 hover:text-green-600 text-lg items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill={`${hash === "#edit-profile" ? "green" : "currentColor"}`}
+              className="bi bi-person-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+            </svg>
             Edit Profile
           </a>
-          <a href="#change-password" className="hover:text-green-500">
+          <a
+            href="#change-password"
+            className="flex gap-2 hover:text-green-600 text-lg items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill={`${hash === "#change-password" ? "green" : "currentColor"}`}
+              className="bi bi-key-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+            </svg>
             Change Password
           </a>
         </div>
       </div>
       <div className="flex flex-col gap-10 w-4/5  ml-[25%]">
-        <div id="about-me" className="w-full shadow-lg rounded-lg bg-white p-10">
+        <div
+          id="about-me"
+          className="w-full shadow-lg rounded-lg bg-white p-10"
+        >
           <div className="flex gap-8 w-full items-center justify-between">
             <div className="flex gap-8">
               <div className="relative">
@@ -80,10 +139,10 @@ export default function Profile() {
                 Update your first and last name to help people recognize you.
               </p>
             </div>
-            <form action="" className="w-3/5 px-10 py-3">
+            <form action="" className="w-3/5 px-20 py-3">
               <div className="flex w-full mb-4 gap-5">
                 <label htmlFor="" className="w-full">
-                <p className="mb-1"> First Name</p>
+                  <p className="mb-1"> First Name</p>
                   <input
                     type="text"
                     name="first-name"
@@ -91,10 +150,10 @@ export default function Profile() {
                     className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
                   />
                 </label>
-                </div>
-                <div className="flex w-full mb-4 gap-5">
+              </div>
+              <div className="flex w-full mb-4 gap-5">
                 <label htmlFor="" className="w-full">
-                <p className="mb-1"> Last Name</p>
+                  <p className="mb-1"> Last Name</p>
                   <input
                     type="text"
                     name="last-name"
@@ -119,16 +178,16 @@ export default function Profile() {
           className="w-full shadow-lg rounded-lg bg-white p-10"
         >
           <div className="flex gap-10">
-          <div className="w-2/5">
+            <div className="w-2/5">
               <h1 className="text-3xl font-bold mb-3">Edit profile</h1>
               <p>
                 Update your email and phone number to help secure your account.
               </p>
-          </div>
-            <form action="" className="w-3/5 px-10 py-3">
+            </div>
+            <form action="" className="w-3/5 px-20 py-3">
               <div className="flex w-full mb-4 gap-5">
                 <label htmlFor="" className="w-full">
-                <p className="mb-1"> Email</p>
+                  <p className="mb-1"> Email</p>
                   <input
                     type="email"
                     name="email"
@@ -136,10 +195,10 @@ export default function Profile() {
                     className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
                   />
                 </label>
-                </div>
-                <div className="flex w-full mb-4 gap-5">
+              </div>
+              <div className="flex w-full mb-4 gap-5">
                 <label htmlFor="" className="w-full">
-                <p className="mb-1"> Phone</p>
+                  <p className="mb-1"> Phone</p>
                   <input
                     type="text"
                     name="phone"
@@ -171,10 +230,10 @@ export default function Profile() {
                 prevent unauthorized access to your account.
               </p>
             </div>
-            <form action="" className="w-3/5 px-10 py-3">
+            <form action="" className="w-3/5 px-20 py-3">
               <div className="flex w-full mb-4 gap-5">
                 <label htmlFor="" className="w-full">
-                 <p className="mb-1">Previous password</p>
+                  <p className="mb-1">Previous password</p>
                   <input
                     type="password"
                     name="previous-password"
@@ -185,7 +244,7 @@ export default function Profile() {
               </div>
               <div className="flex w-full mb-4 gap-5">
                 <label htmlFor="" className="w-full">
-                <p className="mb-1">New password</p>
+                  <p className="mb-1">New password</p>
                   <input
                     type="password"
                     name="new-password"
