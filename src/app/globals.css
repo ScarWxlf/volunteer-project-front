@@ -55,3 +55,47 @@
     transform: none;
     visibility: visible;
   }
+
+  .containerSvg {
+    display: grid;
+    place-content: center;
+  }
+  
+  .squiggle {
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    stroke-dasharray: 1851;
+    transform: scale(0.9);
+  }
+  
+  .squiggle path {
+    stroke: #000000;
+    fill: transparent;
+  }
+  
+  .squiggle.animate {
+    opacity: 1;
+    animation: drawPath 3.5s forwards;
+    transform: scale(1);
+  }
+  .squiggle.animate path {
+    animation: fillPath 1s ease 2s forwards;
+  }
+  
+  @keyframes drawPath {
+    from {
+      stroke-dashoffset: 1851;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes fillPath {
+    from {
+      fill: transparent;
+    }
+    to {
+      fill: black;
+    }
+  }
