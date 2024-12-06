@@ -40,10 +40,27 @@ export default function CarouselSection() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center bg-gray-200 p-5">
-      {/* Slides */}
+    <div className="w-full flex flex-col items-center px-36 relative">
+      <button
+          onClick={() => {
+            setIsManual(true);
+            prevSlide();
+          }}
+          className="absolute left-32 top-1/2 transform -translate-y-1/2 bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-600"
+        >
+          ❮
+        </button>
+        <button
+          onClick={() => {
+            setIsManual(true);
+            nextSlide();
+          }}
+          className="absolute right-32 top-1/2 transform -translate-y-1/2 bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-600"
+        >
+          ❯
+        </button>
       <FadeInSection className="w-full flex flex-col items-center">
-      <div className="overflow-hidden w-9/12 relative">
+      <div className="overflow-hidden w-full relative">
         <div
           className="flex transition-transform duration-500"
           style={{
@@ -54,7 +71,7 @@ export default function CarouselSection() {
           {slides.map((slide, index) => (
             <div
               key={index}
-              className="w-full flex-shrink-0 flex gap-5 items-center justify-between p-20"
+              className="w-full flex-shrink-0 flex gap-5 items-center justify-between px-10 py-5"
             >
               <div className="flex flex-col gap-3 w-1/2">
                 <Image
@@ -76,44 +93,8 @@ export default function CarouselSection() {
             </div>
           ))}
         </div>
-        <button
-          onClick={() => {
-            setIsManual(true);
-            prevSlide();
-          }}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white px-2 py-1 rounded-full"
-        >
-          ❮
-        </button>
-        <button
-          onClick={() => {
-            setIsManual(true);
-            nextSlide();
-          }}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white px-2 py-1 rounded-full"
-        >
-          ❯
-        </button>
       </div>
       </FadeInSection>
-
-      {/* Navigation Buttons */}
-
-      {/* Indicators */}
-      <div className="flex justify-center mt-4 space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? "bg-green-500" : "bg-white"
-            }`}
-            onClick={() => {
-              setIsManual(true);
-              setCurrentIndex(index);
-            }}
-          ></button>
-        ))}
-      </div>
     </div>
   );
 }
