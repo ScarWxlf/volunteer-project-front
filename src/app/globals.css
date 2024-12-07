@@ -99,3 +99,7 @@
       fill: black;
     }
   }
+
+  [id] {
+    scroll-margin-top: 50px;
+  }

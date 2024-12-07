@@ -8,7 +8,7 @@ import x from '/public/social/x.svg'
 
 export default function Footer() {
   const pathname = usePathname();
-  if (pathname === "/signin" || pathname === "/signup" || pathname === '/profile') return null;
+  if (pathname === "/signin" || pathname === "/signup") return null;
   return (
     <div className="flex flex-col flex-none justify-center gap-12 h-80 bg-black text-white">
       <div className="flex justify-center gap-56 px-20">

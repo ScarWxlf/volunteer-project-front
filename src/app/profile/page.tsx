@@ -1,9 +1,25 @@
 "use client";
 import Image from "next/image";
-import useHash from "../../hooks/useHash";
+import { useState, useRef } from "react";
+import { useSectionObserver } from "@/hooks/useSectionObserver ";
 
 export default function Profile() {
-  const hash = useHash();
+  const [currentHash, setCurrentHash] = useState<string>("");
+
+  const aboutMeRef = useRef<HTMLDivElement>(null);
+  const accountNameRef = useRef<HTMLDivElement>(null);
+  const editProfileRef = useRef<HTMLDivElement>(null);
+  const changePasswordRef = useRef<HTMLDivElement>(null);
+
+  const sections = [
+    { ref: aboutMeRef, id: "#about-me" },
+    { ref: accountNameRef, id: "#account-name" },
+    { ref: editProfileRef, id: "#edit-profile" },
+    { ref: changePasswordRef, id: "#change-password" },
+  ];
+
+  useSectionObserver(sections, setCurrentHash);
+
   return (
     <div className="flex flex-grow w-full px-32 py-10 bg-gray-100 gap-5">
       <div className="bg-white rounded-xl shadow-lg w-[25%] fixed p-5 left-12">
@@ -16,7 +32,7 @@ export default function Profile() {
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill={`${hash === "#about-me" ? "green" : "currentColor"}`}
+              fill={`${currentHash === "#about-me" ? "#16a34a" : "currentColor"}`}
               className="bi bi-file-earmark-person-fill"
               viewBox="0 0 16 16"
             >
@@ -32,7 +48,7 @@ export default function Profile() {
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill={`${hash === "#account-name" ? "green" : "currentColor"}`}
+              fill={`${currentHash === "#account-name" ? "#16a34a" : "currentColor"}`}
               className="bi bi-person-bounding-box"
               viewBox="0 0 16 16"
             >
@@ -49,7 +65,7 @@ export default function Profile() {
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill={`${hash === "#edit-profile" ? "green" : "currentColor"}`}
+              fill={`${currentHash === "#edit-profile" ? "#16a34a" : "currentColor"}`}
               className="bi bi-person-fill"
               viewBox="0 0 16 16"
             >
@@ -65,7 +81,7 @@ export default function Profile() {
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill={`${hash === "#change-password" ? "green" : "currentColor"}`}
+              fill={`${currentHash === "#change-password" ? "#16a34a" : "currentColor"}`}
               className="bi bi-key-fill"
               viewBox="0 0 16 16"
             >
@@ -78,6 +94,7 @@ export default function Profile() {
       <div className="flex flex-col gap-10 w-4/5  ml-[25%]">
         <div
           id="about-me"
+          ref={aboutMeRef}
           className="w-full shadow-lg rounded-lg bg-white p-10"
         >
           <div className="flex gap-8 w-full items-center justify-between">
@@ -130,6 +147,7 @@ export default function Profile() {
         </div>
         <div
           id="account-name"
+          ref={accountNameRef}
           className="w-full shadow-lg rounded-lg bg-white p-10"
         >
           <div className="flex gap-10">
@@ -175,6 +193,7 @@ export default function Profile() {
         </div>
         <div
           id="edit-profile"
+          ref={editProfileRef}
           className="w-full shadow-lg rounded-lg bg-white p-10"
         >
           <div className="flex gap-10">
@@ -220,6 +239,7 @@ export default function Profile() {
         </div>
         <div
           id="change-password"
+          ref={changePasswordRef}
           className="w-full shadow-lg rounded-lg bg-white p-10"
         >
           <div className="flex gap-10">
