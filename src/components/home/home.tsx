@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const svg = svgRef.current;
     const svgRight = svgRefRight.current;
-    if(!svg || !svgRight) return;
+    if (!svg || !svgRight) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -48,48 +48,94 @@ export default function Home() {
   return (
     <div className="flex flex-grow flex-col">
       <WelcomeSection />
-      <div className="flex mx-32 rounded-xl shadow-xl my-10">
-        <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-          <Image
-            className="rounded-xl"
-            src="/homeLogos/eating.svg"
-            alt="volunteer"
-            width={100}
-            height={100}
-          />
-          <h1 className="text-2xl font-bold">Eating Well</h1>
-          <p>
-            Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-            justo, quis tempor ligulauisque quis{" "}
-          </p>
+      <div className="flex flex-col mx-32 rounded-xl shadow-xl my-10">
+        <div className="flex">
+          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
+            <Image
+              className="rounded-xl"
+              src="/homeLogos/eating.svg"
+              alt="eating"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl font-bold">Eating Well</h1>
+            <p>
+              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
+              justo, quis tempor ligulauisque quis{" "}
+            </p>
+          </div>
+          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
+            <Image
+              className="rounded-xl"
+              src="/homeLogos/caring.svg"
+              alt="caring"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl font-bold">Caring & Concern</h1>
+            <p>
+              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
+              justo, quis tempor ligulauisque quis{" "}
+            </p>
+          </div>
+          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
+            <Image
+              className="rounded-xl"
+              src="/homeLogos/communities.svg"
+              alt="communities"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl font-bold">Local communities</h1>
+            <p>
+              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
+              justo, quis tempor ligulauisque quis{" "}
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-          <Image
-            className="rounded-xl"
-            src="/homeLogos/caring.svg"
-            alt="volunteer"
-            width={100}
-            height={100}
-          />
-          <h1 className="text-2xl font-bold">Caring & Concern</h1>
-          <p>
-            Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-            justo, quis tempor ligulauisque quis{" "}
-          </p>
-        </div>
-        <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-          <Image
-            className="rounded-xl"
-            src="/homeLogos/travel.svg"
-            alt="volunteer"
-            width={100}
-            height={100}
-          />
-          <h1 className="text-2xl font-bold">Traveling</h1>
-          <p>
-            Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-            justo, quis tempor ligulauisque quis{" "}
-          </p>
+        <div className="flex">
+          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
+            <Image
+              className="rounded-xl"
+              src="/homeLogos/education.svg"
+              alt="education"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl font-bold">Education</h1>
+            <p>
+              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
+              justo, quis tempor ligulauisque quis{" "}
+            </p>
+          </div>
+          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
+            <Image
+              className="rounded-xl"
+              src="/homeLogos/water.svg"
+              alt="clean water"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl font-bold">Clean Water</h1>
+            <p>
+              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
+              justo, quis tempor ligulauisque quis{" "}
+            </p>
+          </div>
+          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
+            <Image
+              className="rounded-xl"
+              src="/homeLogos/heal.svg"
+              alt="health"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-2xl font-bold">Health Care</h1>
+            <p>
+              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
+              justo, quis tempor ligulauisque quis{" "}
+            </p>
+          </div>
         </div>
       </div>
       <CarouselSection />
@@ -164,9 +210,11 @@ export default function Home() {
               height={100}
             />
             <div className="w-full h-full items-center top-2 left-2 flex absolute justify-center">
+              <a href="/contacts">
               <button className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition text-xl hover:scale-105">
                 Contact Us
               </button>
+              </a>
             </div>
           </div>
           <div className="w-1/3 containerSvg">
@@ -193,47 +241,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
-
-{
-  /* <div className="flex mx-32 my-10 relative
-        h-56 bg-gradient-to-r from-green-500 to-green-400 rounded-xl shadow-xl
-      ">
-        <div className="flex rounded-xl shadow-xl w-full absolute -top-20 bg-white">
-
-        <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-          <Image
-            className="rounded-xl"
-            src="/homeLogos/eating.svg"
-            alt="volunteer"
-            width={100}
-            height={100}
-          />
-          <h1 className="text-2xl font-bold">Eating Well</h1>
-          <p>Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligulauisque quis </p>
-        </div>
-        <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-          <Image
-            className="rounded-xl"
-            src="/homeLogos/caring.svg"
-            alt="volunteer"
-            width={100}
-            height={100}
-          />
-          <h1 className="text-2xl font-bold">Caring & Concern</h1>
-          <p>Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligulauisque quis </p>
-        </div>
-        <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-          <Image
-            className="rounded-xl"
-            src="/homeLogos/travel.svg"
-            alt="volunteer"
-            width={100}
-            height={100}
-          />
-          <h1 className="text-2xl font-bold">Traveling</h1>
-          <p>Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligulauisque quis </p>
-        </div>
-        </div>
-      </div> */
 }

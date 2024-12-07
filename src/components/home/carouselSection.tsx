@@ -46,7 +46,7 @@ export default function CarouselSection() {
             setIsManual(true);
             prevSlide();
           }}
-          className="absolute left-32 top-1/2 transform -translate-y-1/2 bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-600"
+          className="absolute z-10 left-32 top-1/2 transform -translate-y-1/2 bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-600"
         >
           ❮
         </button>
@@ -55,7 +55,7 @@ export default function CarouselSection() {
             setIsManual(true);
             nextSlide();
           }}
-          className="absolute right-32 top-1/2 transform -translate-y-1/2 bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-600"
+          className="absolute z-10 right-32 top-1/2 transform -translate-y-1/2 bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-600"
         >
           ❯
         </button>
