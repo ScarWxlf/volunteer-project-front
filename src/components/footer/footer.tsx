@@ -2,64 +2,67 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import logo from "/public/logo.svg";
-import facebook from '/public/social/facebook.svg'
-import instagram from '/public/social/instagram.svg'
-import x from '/public/social/x.svg'
+import facebook from '/public/social/facebook.svg';
+import instagram from '/public/social/instagram.svg';
+import x from '/public/social/x.svg';
 
 export default function Footer() {
   const pathname = usePathname();
   if (pathname === "/signin" || pathname === "/signup") return null;
+
   return (
-    <div className="flex flex-col flex-none justify-center gap-12 h-80 bg-black text-white">
-      <div className="flex justify-center gap-56 px-20">
-        <div className="flex flex-col gap-3 w-1/4">
-          <div className="flex gap-1">
-            <Image className="" src={logo} alt="beb" width={20} height={20} />
-            <h1 className="text-md">CHARITY</h1>
-          </div>
-          <div>
-            <p>
-              Tincidunt luctus porta amet lectus at ultricies nec sed non. Sed
-              sit egestas enim consectetur donec faucibus. Ornare ac dolor
-              porta tellus viverra arcu a ridiculus.
+    <footer className="bg-black text-white py-10">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
+          <div className="flex flex-col gap-3 lg:w-1/4">
+            <div className="flex items-center gap-2">
+              <Image src={logo} alt="beb" width={20} height={20} />
+              <h1 className="text-lg font-semibold">CHARITY</h1>
+            </div>
+            <p className="text-gray-400 text-sm">
+              Tincidunt luctus porta amet lectus at ultricies nec sed non. Sed sit egestas enim consectetur donec faucibus. Ornare ac dolor porta tellus viverra arcu a ridiculus.
             </p>
+            <div className="text-sm">
+              <p>Phone: <span className="text-gray-400">+380665334163</span></p>
+              <p>Address: <span className="text-gray-400">Mukachevo, Luchki, Golovna 135</span></p>
+            </div>
           </div>
-          <div>
-            <p>Phone: <span className="text-gray-400">+380665334163</span></p>
-            <p>Address: <span className="text-gray-400">Mukachevo, Luchki, Golovna 135</span></p>
+
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 w-full lg:w-3/4">
+            <div className="flex flex-col gap-3">
+              <h1 className="text-lg font-semibold">About us</h1>
+              <ul className="text-sm space-y-1">
+                <li>About Us</li>
+                <li>Causes</li>
+                <li>Volunteers</li>
+                <li>Partners</li>
+                <li>Contact Us</li>
+              </ul>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h1 className="text-lg font-semibold">Useful links</h1>
+              <ul className="text-sm space-y-1">
+                <li>F.A.Q</li>
+                <li>News</li>
+                <li>Reports</li>
+                <li>Terms of Use</li>
+                <li>Privacy Policy</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col gap-3">
-          <h1 className="text-lg">About us</h1>
-          <div>
-            <p>About Us</p>
-            <p>Causes</p>
-            <p>Volunteers</p>
-            <p>Partners</p>
-            <p>Contact Us</p>
+
+        <div className="flex flex-col lg:flex-row justify-between items-center mt-8 border-t border-gray-700 pt-6">
+          <div className="flex gap-4">
+            <Image src={facebook} alt="facebook" width={30} height={30} />
+            <Image src={instagram} alt="instagram" width={30} height={30} />
+            <Image src={x} alt="x" width={30} height={30} />
           </div>
-        </div>
-        <div className="flex flex-col gap-3">
-          <h1 className="text-lg">Useful links</h1>
-          <div>
-            <p>F.A.Q</p>
-            <p>News</p>
-            <p>Reports</p>
-            <p>Terms of Use</p>
-            <p>Privacy Policy</p>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-between px-56">
-        <div className="flex gap-2 ml-16">
-            <Image src={facebook} alt="facebook" width={30} height={30}/>
-            <Image src={instagram} alt="instagram" width={30} height={30}/>
-            <Image src={x} alt="x" width={30} height={30}/>
-        </div>
-        <div className="text-gray-400">
+          <p className="text-gray-400 text-sm mt-4 lg:mt-0">
             © Copyright Charity {new Date().getFullYear()}
+          </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
