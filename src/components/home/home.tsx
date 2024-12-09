@@ -3,6 +3,7 @@ import Image from "next/image";
 import WelcomeSection from "./welcomeSection";
 import CarouselSection from "./carouselSection";
 import FadeInSection from "../fadeSection/fadeSection";
+import HomeLogos from "./logoSection";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -48,125 +49,36 @@ export default function Home() {
   return (
     <div className="flex flex-grow flex-col">
       <WelcomeSection />
-      <div className="flex flex-col mx-32 rounded-xl shadow-xl my-10">
-        <div className="flex">
-          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-            <Image
-              className="rounded-xl"
-              src="/homeLogos/eating.svg"
-              alt="eating"
-              width={100}
-              height={100}
-            />
-            <h1 className="text-2xl font-bold">Eating Well</h1>
-            <p>
-              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-              justo, quis tempor ligulauisque quis{" "}
-            </p>
-          </div>
-          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-            <Image
-              className="rounded-xl"
-              src="/homeLogos/caring.svg"
-              alt="caring"
-              width={100}
-              height={100}
-            />
-            <h1 className="text-2xl font-bold">Caring & Concern</h1>
-            <p>
-              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-              justo, quis tempor ligulauisque quis{" "}
-            </p>
-          </div>
-          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-            <Image
-              className="rounded-xl"
-              src="/homeLogos/communities.svg"
-              alt="communities"
-              width={100}
-              height={100}
-            />
-            <h1 className="text-2xl font-bold">Local communities</h1>
-            <p>
-              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-              justo, quis tempor ligulauisque quis{" "}
-            </p>
-          </div>
-        </div>
-        <div className="flex">
-          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-            <Image
-              className="rounded-xl"
-              src="/homeLogos/education.svg"
-              alt="education"
-              width={100}
-              height={100}
-            />
-            <h1 className="text-2xl font-bold">Education</h1>
-            <p>
-              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-              justo, quis tempor ligulauisque quis{" "}
-            </p>
-          </div>
-          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-            <Image
-              className="rounded-xl"
-              src="/homeLogos/water.svg"
-              alt="clean water"
-              width={100}
-              height={100}
-            />
-            <h1 className="text-2xl font-bold">Clean Water</h1>
-            <p>
-              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-              justo, quis tempor ligulauisque quis{" "}
-            </p>
-          </div>
-          <div className="flex flex-col items-center w-1/3 p-10 text-center gap-2">
-            <Image
-              className="rounded-xl"
-              src="/homeLogos/heal.svg"
-              alt="health"
-              width={100}
-              height={100}
-            />
-            <h1 className="text-2xl font-bold">Health Care</h1>
-            <p>
-              Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan
-              justo, quis tempor ligulauisque quis{" "}
-            </p>
-          </div>
-        </div>
-      </div>
+      <HomeLogos/>
       <CarouselSection />
       <FadeInSection className="w-full my-10">
-        <div className="w-full flex items-center px-32">
+        <div className="w-full flex sm:flex-row flex-col items-center gap-6 lg:gap-12 px-4 sm:px-8 lg:px-32">
           <Image
-            className="w-2/5 rounded-xl"
+            className="sm:w-1/2 xl:w-2/5 rounded-xl"
             src="/banner.png"
             alt="volunteer"
             width={1000}
             height={1000}
           />
-          <div className="w-3/5 p-10 lg:p-16 flex flex-col gap-5">
-            <h1 className="text-4xl font-bold leading-tight">
+          <div className="w-full lg:w-3/5 p-6 xl:pr-12 flex flex-col gap-5">
+            <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-snug">
               Be The Change You Wish To See In The World.
             </h1>
             <div>
-              <h2 className="text-2xl font-semibold mb-2">Welfare</h2>
+              <h2 className="text-xl xl:text-2xl font-semibold mb-2">Welfare</h2>
               <p className="text-base">
                 Donec dapibus mauris id odio ornare tempus. Duis sit amet
                 accumsan justo, quis tempor ligula. Ut quis consequat orci.
               </p>
             </div>
-            <div className="mt-4">
-              <h2 className="text-2xl font-semibold mb-2">Schooling</h2>
+            <div>
+              <h2 className="text-xl xl:text-2xl font-semibold mb-2">Schooling</h2>
               <p className="text-base">
                 Donec dapibus mauris id odio ornare tempus. Duis sit amet
                 accumsan justo, quis tempor ligula. Ut quis consequat orci.
               </p>
             </div>
-            <div className="flex mt-6">
+            <div className="flex mt-4">
               <Link href="/causes">
                 <button className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition">
                   Donate Now
@@ -176,14 +88,14 @@ export default function Home() {
           </div>
         </div>
       </FadeInSection>
-      <div className="w-full flex flex-col items-center gap-10 px-32 mt-5 mb-20">
-        <h1 className="text-6xl w-2/3 text-center font-medium">
+      <div className="w-full flex flex-col items-center sm:gap-10 px-4 sm:px-8 lg:px-32 mt-5 mb-20">
+        <h1 className="text-4xl xl:text-6xl w-2/3 text-center font-medium">
           Let&apos;s talk if you have any questions
         </h1>
-        <div className="flex gap-10">
-          <div className="w-1/3 containerSvg">
+        <div className="flex sm:gap-10 w-full">
+          <div className="w-1/4 sm:w-1/3 containerSvg">
             <svg
-              className="squiggle"
+              className="squiggle w-full"
               ref={svgRef}
               xmlns="http://www.w3.org/2000/svg"
               width="427"
@@ -201,25 +113,27 @@ export default function Home() {
               />
             </svg>
           </div>
-          <div className="w-1/3 relative">
-            <Image
-              className="w-full"
-              src="/homeContactSection/center.svg"
-              alt="contact2"
-              width={100}
-              height={100}
-            />
-            <div className="w-full h-full items-center top-2 left-2 flex absolute justify-center">
-              <a href="/contacts">
-              <button className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition text-xl hover:scale-105">
+          <div className="w-2/3 sm:w-1/3 relative">
+            <div className="flex items-center w-full h-full">
+              <Image
+                className="w-full"
+                src="/homeContactSection/center.svg"
+                alt="contact2"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div className="w-full h-full items-center top-1 left-1 sm:top-1 sm:left-1 md:top-2 md:left-2 flex absolute justify-center">
+              <a href="/contacts" className="w-full h-full flex justify-center items-center">
+              <button className="w-[40%] sm:w-1/2 h-[14%] sm:h-1/6 md:h-1/5 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition text-sm md:text-md lg:text-xl hover:scale-105">
                 Contact Us
               </button>
               </a>
             </div>
           </div>
-          <div className="w-1/3 containerSvg">
+          <div className="w-1/4 sm:w-1/3 containerSvg">
             <svg
-              className="squiggle"
+              className="squiggle w-full"
               ref={svgRefRight}
               xmlns="http://www.w3.org/2000/svg"
               width="427"

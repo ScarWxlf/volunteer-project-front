@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
           <div className="flex flex-col gap-3 lg:w-1/4">
             <div className="flex items-center gap-2">
-              <Image src={logo} alt="beb" width={20} height={20} />
+              <Image src={logo} alt="logo" width={20} height={20} />
               <h1 className="text-lg font-semibold">CHARITY</h1>
             </div>
             <p className="text-gray-400 text-sm">
