@@ -21,7 +21,9 @@ export const useSectionObserver = (
           }
         });
       },
-      { threshold: 1 }
+      { threshold: 0.7,
+        rootMargin: "0px 0px -50% 0px"
+       }
     );
 
     sections.forEach((section) => {

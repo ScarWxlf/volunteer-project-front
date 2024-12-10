@@ -10,7 +10,7 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     if(pathname === '/signin' || pathname === '/signup') return null;
     return(
-        <div className="flex items-center flex-none md:justify-around justify-between h-20 bg-black text-white relative">
+        <div className="flex items-center flex-none md:justify-around justify-between h-20 bg-black text-white relative z-50">
             <Link className='flex text-center gap-1 text-xl font-bold justify-end md:px-0 px-10' href='/'>
                 <Image className='' src={logo} alt="beb"/>
                 <h1 className='mt-0.5'>CHARITY</h1>

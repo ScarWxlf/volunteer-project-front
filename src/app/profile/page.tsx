@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState, useRef } from "react";
 import { useSectionObserver } from "@/hooks/useSectionObserver ";
+import ProfileCard from "./ProfileInputCard";
 
 export default function Profile() {
   const [currentHash, setCurrentHash] = useState<string>("");
@@ -21,18 +22,20 @@ export default function Profile() {
   useSectionObserver(sections, setCurrentHash);
 
   return (
-    <div className="flex flex-grow w-full px-32 py-10 bg-gray-100 gap-5">
-      <div className="bg-white rounded-xl shadow-lg w-[25%] fixed p-5 left-12">
-        <div className="flex flex-col gap-5">
+    <div className="flex flex-col lg:flex-row w-full xl:px-32 lg:px-16 max-[530px]:px-2 max-[530px]:py-4 px-10 py-9 bg-gray-100 gap-5 lg:items-start">
+      <div className="bg-white rounded-xl shadow-lg lg:w-[25%] sticky top-4 p-5 lg:left-12 left-10 z-20">
+        <div className="flex max-[530px]:grid max-[530px]:grid-cols-2 max-[380px]:grid-cols-1 sm:flex-row lg:flex-col flex-row justify-between gap-5">
           <a
             href="#about-me"
-            className="flex gap-2 hover:text-green-600 text-lg items-center"
+            className="flex gap-2 hover:text-green-600 text-md md:text-lg items-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill={`${currentHash === "#about-me" ? "#16a34a" : "currentColor"}`}
+              fill={`${
+                currentHash === "#about-me" ? "#16a34a" : "currentColor"
+              }`}
               className="bi bi-file-earmark-person-fill"
               viewBox="0 0 16 16"
             >
@@ -42,13 +45,15 @@ export default function Profile() {
           </a>
           <a
             href="#account-name"
-            className="flex gap-2 hover:text-green-600 text-lg items-center"
+            className="flex gap-2 hover:text-green-600 text-md md:text-lg items-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill={`${currentHash === "#account-name" ? "#16a34a" : "currentColor"}`}
+              fill={`${
+                currentHash === "#account-name" ? "#16a34a" : "currentColor"
+              }`}
               className="bi bi-person-bounding-box"
               viewBox="0 0 16 16"
             >
@@ -59,13 +64,15 @@ export default function Profile() {
           </a>
           <a
             href="#edit-profile"
-            className="flex gap-2 hover:text-green-600 text-lg items-center"
+            className="flex gap-2 hover:text-green-600 text-md md:text-lg items-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill={`${currentHash === "#edit-profile" ? "#16a34a" : "currentColor"}`}
+              fill={`${
+                currentHash === "#edit-profile" ? "#16a34a" : "currentColor"
+              }`}
               className="bi bi-person-fill"
               viewBox="0 0 16 16"
             >
@@ -75,13 +82,15 @@ export default function Profile() {
           </a>
           <a
             href="#change-password"
-            className="flex gap-2 hover:text-green-600 text-lg items-center"
+            className="flex gap-2 hover:text-green-600 text-md md:text-lg items-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
-              fill={`${currentHash === "#change-password" ? "#16a34a" : "currentColor"}`}
+              fill={`${
+                currentHash === "#change-password" ? "#16a34a" : "currentColor"
+              }`}
               className="bi bi-key-fill"
               viewBox="0 0 16 16"
             >
@@ -91,42 +100,40 @@ export default function Profile() {
           </a>
         </div>
       </div>
-      <div className="flex flex-col gap-10 w-4/5  ml-[25%]">
+      <div className="flex flex-col gap-10 lg:w-4/5 w-full">
         <div
           id="about-me"
           ref={aboutMeRef}
-          className="w-full shadow-lg rounded-lg bg-white p-10"
+          className="w-full shadow-lg rounded-lg bg-white max-[530px]:p-5 p-10 pt-20 max-[800px]:pt-10 md:pt-10"
         >
-          <div className="flex gap-8 w-full items-center justify-between">
-            <div className="flex gap-8">
-              <div className="relative">
+          <div className="flex max-[800px]:flex-col gap-8 w-full items-center justify-between">
+            <div className="flex-none relative">
+              <Image
+                src="/home.jpg"
+                alt="profile"
+                width={400}
+                height={400}
+                className="max-[800px]:h-64 max-[800px]:w-64 max-[600px]:h-44 max-[600px]:w-44 rounded-full object-cover h-44 w-44 border-4 border-green-500"
+              />
+              <button className="absolute bottom-3 right-3 bg-green-500 rounded-full p-2 hover:scale-105">
                 <Image
-                  src="/home.jpg"
-                  alt="profile"
-                  width={400}
-                  height={400}
-                  className="rounded-full object-cover h-44 w-44 border-4 border-green-500"
+                  src="/profile/camera.svg"
+                  alt="edit"
+                  width={30}
+                  height={30}
+                  className=""
                 />
-                <button className="absolute bottom-3 right-3 bg-green-500 rounded-full p-2 hover:scale-105">
-                  <Image
-                    src="/profile/camera.svg"
-                    alt="edit"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <span className="absolute  bottom-6 right-7 font-bold text-2xl text-white">
-                    +
-                  </span>
-                </button>
-              </div>
-              <div className="flex flex-col gap-5 my-auto">
-                <h1 className="text-4xl">FirstName LastName</h1>
-                <p className="text-2xl">email@gmail.com</p>
-              </div>
+                <span className="absolute  bottom-6 right-7 font-bold text-2xl text-white">
+                  +
+                </span>
+              </button>
             </div>
-            <div>
-              <button className="bg-green-500 hover:bg-green-600 hover:scale-105 py-3 px-8 text-white rounded-xl font-medium text-lg">
+            <div className="flex flex-col sm:flex-row justify-between items-center w-full gap-4 sm:gap-8 max-[800px]:px-5">
+              <div className="flex flex-col gap-2 sm:gap-5 my-auto text-center sm:text-start">
+                <h1 className="max-[380px]:text-2xl text-3xl lg:text-2xl xl:text-3xl">FirstName LastName</h1>
+                <p className="max-[380px]:text-xl text-2xl lg:text-xl xl:text-2xl">email@gmail.com</p>
+              </div>
+              <button className="bg-green-500 hover:bg-green-600 hover:scale-105 py-3 px-4 lg:px-4 xl:px-8 text-white rounded-xl font-medium text-lg max-[600px]:text-sm">
                 My causes
               </button>
             </div>
@@ -145,145 +152,66 @@ export default function Profile() {
             </p>
           </div>
         </div>
-        <div
+        <ProfileCard
           id="account-name"
-          ref={accountNameRef}
-          className="w-full shadow-lg rounded-lg bg-white p-10"
-        >
-          <div className="flex gap-10">
-            <div className="w-2/5">
-              <h1 className="text-3xl font-bold mb-3">Account name</h1>
-              <p>
-                Update your first and last name to help people recognize you.
-              </p>
-            </div>
-            <form action="" className="w-3/5 px-20 py-3">
-              <div className="flex w-full mb-4 gap-5">
-                <label htmlFor="" className="w-full">
-                  <p className="mb-1"> First Name</p>
-                  <input
-                    type="text"
-                    name="first-name"
-                    placeholder="First Name"
-                    className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
-                  />
-                </label>
-              </div>
-              <div className="flex w-full mb-4 gap-5">
-                <label htmlFor="" className="w-full">
-                  <p className="mb-1"> Last Name</p>
-                  <input
-                    type="text"
-                    name="last-name"
-                    placeholder="Last Name"
-                    className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
-                  />
-                </label>
-              </div>
-              <div className="w-full flex justify-center">
-                <button
-                  type="submit"
-                  className="px-10 bg-green-500 text-white py-2 rounded-md font-bold hover:bg-green-600 transition hover:scale-105"
-                >
-                  Save changes
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div
+          accountNameRef={accountNameRef}
+          title="Account name"
+          description="Update your first and last name to help people recognize you."
+          inputs={[
+            {
+              title: "First Name",
+              type: "text",
+              name: "first-name",
+              placeholder: "First Name",
+            },
+            {
+              title: "Last Name",
+              type: "text",
+              name: "last-name",
+              placeholder: "Last Name",
+            },
+          ]}
+        />
+        <ProfileCard
           id="edit-profile"
-          ref={editProfileRef}
-          className="w-full shadow-lg rounded-lg bg-white p-10"
-        >
-          <div className="flex gap-10">
-            <div className="w-2/5">
-              <h1 className="text-3xl font-bold mb-3">Edit profile</h1>
-              <p>
-                Update your email and phone number to help secure your account.
-              </p>
-            </div>
-            <form action="" className="w-3/5 px-20 py-3">
-              <div className="flex w-full mb-4 gap-5">
-                <label htmlFor="" className="w-full">
-                  <p className="mb-1"> Email</p>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
-                  />
-                </label>
-              </div>
-              <div className="flex w-full mb-4 gap-5">
-                <label htmlFor="" className="w-full">
-                  <p className="mb-1"> Phone</p>
-                  <input
-                    type="text"
-                    name="phone"
-                    placeholder="Phone"
-                    className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
-                  />
-                </label>
-              </div>
-              <div className="w-full flex justify-center">
-                <button
-                  type="submit"
-                  className="px-10 bg-green-500 text-white py-2 rounded-md font-bold hover:bg-green-600 transition hover:scale-105"
-                >
-                  Save changes
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div
+          accountNameRef={editProfileRef}
+          title="Edit profile"
+          description="Update your email and phone number to help secure your account."
+          inputs={[
+            {
+              title: "Email",
+              type: "email",
+              name: "email",
+              placeholder: "Email",
+            },
+            {
+              title: "Phone",
+              type: "text",
+              name: "phone",
+              placeholder: "Phone",
+            },
+          ]}
+        />
+        <ProfileCard
           id="change-password"
-          ref={changePasswordRef}
-          className="w-full shadow-lg rounded-lg bg-white p-10"
-        >
-          <div className="flex gap-10">
-            <div className="w-2/5">
-              <h1 className="text-3xl font-bold mb-3">Change password</h1>
-              <p>
-                We recommend that you periodically update your password to help
-                prevent unauthorized access to your account.
-              </p>
-            </div>
-            <form action="" className="w-3/5 px-20 py-3">
-              <div className="flex w-full mb-4 gap-5">
-                <label htmlFor="" className="w-full">
-                  <p className="mb-1">Previous password</p>
-                  <input
-                    type="password"
-                    name="previous-password"
-                    placeholder="Previous password"
-                    className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
-                  />
-                </label>
-              </div>
-              <div className="flex w-full mb-4 gap-5">
-                <label htmlFor="" className="w-full">
-                  <p className="mb-1">New password</p>
-                  <input
-                    type="password"
-                    name="new-password"
-                    placeholder="New password"
-                    className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
-                  />
-                </label>
-              </div>
-              <div className="flex justify-center w-full">
-                <button
-                  type="submit"
-                  className="px-10 bg-green-500 text-white py-2 rounded-md font-bold hover:bg-green-600 transition hover:scale-105"
-                >
-                  Save changes
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+          accountNameRef={changePasswordRef}
+          title="Change password"
+          description="We recommend that you periodically update your password to help prevent unauthorized access to your account."
+          inputs={[
+            {
+              title: "Previous password",
+              type: "password",
+              name: "previous-password",
+              placeholder: "Previous password",
+            },
+            {
+              title: "New password",
+              type: "password",
+              name: "new-password",
+              placeholder: "New password",
+            },
+          ]}
+        />
       </div>
     </div>
   );
