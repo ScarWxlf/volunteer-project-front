@@ -6,6 +6,7 @@ import ProfileCard from "./ProfileInputCard";
 
 export default function Profile() {
   const [currentHash, setCurrentHash] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const aboutMeRef = useRef<HTMLDivElement>(null);
   const accountNameRef = useRef<HTMLDivElement>(null);
@@ -21,11 +22,23 @@ export default function Profile() {
 
   useSectionObserver(sections, setCurrentHash);
 
+  const handleClick = (hash: string) => {
+    setIsOpen(false);
+    setCurrentHash(hash);
+  }
+
   return (
     <div className="flex flex-col lg:flex-row w-full xl:px-32 lg:px-16 max-[530px]:px-2 max-[530px]:py-4 px-10 py-9 bg-gray-100 gap-5 lg:items-start">
-      <div className="bg-white rounded-xl shadow-lg lg:w-[25%] sticky top-4 p-5 lg:left-12 left-10 z-20">
-        <div className="flex max-[530px]:grid max-[530px]:grid-cols-2 max-[380px]:grid-cols-1 sm:flex-row lg:flex-col flex-row justify-between gap-5">
+      <div className={`bg-white rounded-xl shadow-lg lg:w-[25%] sticky top-4 lg:left-12 left-10 z-20 ${isOpen ? "" : "p-0"}`}>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`min-[380px]:hidden bg-green-500 text-white w-full py-2 px-4 rounded-md font-medium`}
+        >{
+          currentHash === "#about-me" ? "About me" : currentHash === "#account-name" ? "Account Name" : currentHash === "#edit-profile" ? "Edit Profile" : "Change Password"
+        }</button>
+        <div className={`m-5 max-[530px]:grid-cols-2 max-[380px]:grid-cols-1 sm:flex-row lg:flex-col flex-row justify-between gap-5 flex ${isOpen ? "max-[530px]:grid" : "max-[380px]:hidden"}`}>
           <a
+            onClick={() => handleClick("#about-me")}
             href="#about-me"
             className="flex gap-2 hover:text-green-600 text-md md:text-lg items-center"
           >
@@ -44,6 +57,7 @@ export default function Profile() {
             About me
           </a>
           <a
+            onClick={() => handleClick("#account-name")}
             href="#account-name"
             className="flex gap-2 hover:text-green-600 text-md md:text-lg items-center"
           >
@@ -63,6 +77,7 @@ export default function Profile() {
             Account Name
           </a>
           <a
+            onClick={() => handleClick("#edit-profile")}
             href="#edit-profile"
             className="flex gap-2 hover:text-green-600 text-md md:text-lg items-center"
           >
@@ -81,6 +96,7 @@ export default function Profile() {
             Edit Profile
           </a>
           <a
+            onClick={() => handleClick("#change-password")}
             href="#change-password"
             className="flex gap-2 hover:text-green-600 text-md md:text-lg items-center"
           >
