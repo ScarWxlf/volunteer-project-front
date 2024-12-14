@@ -1,7 +1,19 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
+import { Login } from "@/lib/auth/auth";
 
 export default function SignInPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+  const [errorResponseMessage, setErrorResponseMessage] = useState("");
+
+  const clearMessages = () => {
+    setResponseMessage("");
+    setErrorResponseMessage("");
+  };
+
   return (
     <div
       className="relative flex items-center justify-center h-screen bg-cover bg-no-repeat overflow-hidden py-5 sm:px-0 px-5"
@@ -29,9 +41,10 @@ export default function SignInPage() {
             Sign Up
           </a>
         </p>
-        <form>
+        <div>
           <div className="mb-4">
             <input
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               name="email"
               placeholder="Email Address"
@@ -40,21 +53,44 @@ export default function SignInPage() {
           </div>
           <div className="mb-4">
             <input
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               name="password"
               placeholder="Password"
               className="w-full py-2 px-4 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
             />
           </div>
+          <p
+            className={`${
+              responseMessage ? "" : "collapse"
+            } text-center text-green-500 mb-2`}
+          >
+            {responseMessage || " "}
+          </p>
+          <p
+            className={`${
+              errorResponseMessage ? "" : "collapse"
+            } text-center text-red-500 mb-2 font-bold`}
+          >
+            {errorResponseMessage || " "}
+          </p>
           <div className="w-full flex justify-center">
             <button
-              type="submit"
+              onClick={() => {
+                Login({
+                  email,
+                  password,
+                  clearMessages,
+                  setResponseMessage,
+                  setErrorResponseMessage
+              });
+              }}
               className="w-2/3 bg-green-500 text-white py-2 px-4 rounded-md text-lg font-medium hover:bg-green-600 transition-transform transform hover:scale-105"
             >
               Sign In
             </button>
           </div>
-        </form>
+        </div>
         <p className="mt-4 text-center">
           Forgot your password?{" "}
           <a

@@ -54,9 +54,9 @@ export default function Footer() {
 
         <div className="flex flex-col lg:flex-row justify-between items-center mt-8 border-t border-gray-700 pt-6">
           <div className="flex gap-4">
-            <Image src={facebook} alt="facebook" width={30} height={30} />
-            <Image src={instagram} alt="instagram" width={30} height={30} />
-            <Image src={x} alt="x" width={30} height={30} />
+            <Image className="h-auto w-8" src={facebook} alt="facebook" width={30} height={30} />
+            <Image className="h-auto w-8" src={instagram} alt="instagram" width={30} height={30} />
+            <Image className="h-auto w-8" src={x} alt="x" width={30} height={30} />
           </div>
           <p className="text-gray-400 text-sm mt-4 lg:mt-0">
             © Copyright Charity {new Date().getFullYear()}

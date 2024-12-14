@@ -6,9 +6,11 @@ export default function WelcomeSection() {
 
   return (
     <div className="w-full relative cursor-default">
-      <img
+      <Image
         src="/home.jpg"
         alt="home"
+        width={1920}
+        height={1080}
         className="w-full h-[500px] sm:h-[400px] lg:h-[600px] object-cover brightness-[.5]"
       />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold flex flex-col items-center lg:items-start gap-6 px-4 sm:px-10 lg:px-20 w-full lg:w-9/12">
@@ -33,10 +35,10 @@ export default function WelcomeSection() {
           <div className="absolute w-3/4 sm:w-1/2 h-full bg-black opacity-25 blur-[6px] z-[-1]"></div>
         </div>
         <div className="flex flex-wrap justify-center lg:justify-start gap-6">
-          <Image src="/welcomeLogos/1.svg" alt="logo1" width={90} height={90} />
-          <Image src="/welcomeLogos/2.svg" alt="logo2" width={90} height={90} />
-          <Image src="/welcomeLogos/3.svg" alt="logo3" width={90} height={90} />
-          <Image src="/welcomeLogos/4.svg" alt="logo4" width={90} height={90} />
+          <Image src="/welcomeLogos/1.svg" alt="logo1" width={90} height={90} className="h-auto w-auto" />
+          <Image src="/welcomeLogos/2.svg" alt="logo2" width={90} height={90} className="h-auto w-auto" />
+          <Image src="/welcomeLogos/3.svg" alt="logo3" width={90} height={90} className="h-auto w-auto" />
+          <Image src="/welcomeLogos/4.svg" alt="logo4" width={90} height={90} className="h-auto w-auto" />
         </div>
       </div>
     </div>

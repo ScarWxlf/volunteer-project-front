@@ -19,7 +19,7 @@ export default function DetailsPage() {
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold my-5">There is title</h1>
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="w-full lg:w-2/3">
-          <Image className="w-full rounded-3xl" layout="responsive" src="/home.jpg" alt="title" width={0} height={0}/>
+          <Image className="w-full h-auto rounded-3xl" layout="responsive" src="/home.jpg" alt="title" width={0} height={0}/>
           <div className="h-4 w-full my-5 bg-gray-200 rounded-xl">
             <div
               className="h-4 bg-green-500 rounded-xl"
@@ -56,9 +56,9 @@ export default function DetailsPage() {
               src="/home.jpg"
               alt="title"
               layout="responsive"
-              width={0}
-              height={0}
-              className="rounded-2xl"            
+              width={1000}
+              height={1000}
+              className="rounded-2xl w-auto h-auto"            
             />
             <p className="my-4">
               Nunc tortor et a ornare et placerat. Tellus in ultricies risus
