@@ -1,7 +1,97 @@
-
+'use client';
+import { useState, useRef } from "react";
 
 export default function PaymentForm(){
+  const [amount, setAmount] = useState<number>(0);
+  const [customAmount, setCustomAmount] = useState<string>('');
+  const customAmountInputRef = useRef<HTMLInputElement>(null);
+
+  const displayedAmount = amount === 1 ? customAmount : amount;
+
+  const handleSetAmount = (value: number) => {
+    setAmount(value);
+    if (value === 1) {
+      customAmountInputRef.current?.focus();
+      return;
+    }
+    setCustomAmount("");
+  }
     return(
+      <div className="w-full">
+        <div className="w-full">
+            <h1 className="text-2xl font-bold w-2/3 p-5">Donation amount</h1>
+            <div className="flex flex-wrap gap-3 sm:gap-6 w-full lg:w-2/3 p-5">
+              {[10, 25, 50, 100, 500, 1].map((value) => (
+                <label
+                  key={value}
+                  className={`inline-flex items-center border-2 border-black rounded-3xl px-5 py-2 hover:bg-green-500 hover:text-white hover:border-none hover:mx-[1.6px] ${
+                    amount === value &&
+                    "bg-green-600 text-white border-none mx-[1.6px]"
+                  }`}
+                >
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="amount"
+                    value={value}
+                    onChange={() => {handleSetAmount(value)}}
+                  />
+                  <span className="">
+                    {value === 1 ? "Custom" : `$${value}`}
+                  </span>
+                </label>
+              ))}
+            </div>
+            <div className={`relative w-44 ml-4`}>
+              <input
+                ref={customAmountInputRef}
+                value={customAmount}
+                onClick={() => {
+                  setAmount(1);
+                }}
+                onChange={(e) => {
+                  const target = e.target as HTMLInputElement;
+                  if (target.value === "") return setCustomAmount('0');
+                  setCustomAmount(target.value);
+                }}
+                type="number"
+                name="customAmount"
+                className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-full font-bold mt-2 p-4 text-center rounded-full text-xl bg-gray-100"
+                placeholder="0"
+                style={{
+                  width: `${Math.max(150, customAmount.toString().length * 20)}px`,
+                }}
+              />
+              <span className="absolute text-2xl font-bold w-full h-full left-5 top-1/3 pointer-events-none">
+                $
+              </span>
+            </div>
+          </div>
+          <div className="p-5 w-full">
+            <h1 className="text-2xl font-bold">Select Payment Method</h1>
+            <div className="flex gap-5 text-lg mt-3">
+              <label className="inline-flex items-center mt-2 relative">
+                <input
+                  type="radio"
+                  className="form-radio appearance-none h-5 w-5 text-green-600 peer"
+                  name="payment"
+                />
+                <span className="absolute  h-5 w-5 rounded-xl border transition-all duration-500 border-black peer-checked:bg-green-500 peer-checked:border-none"></span>
+                <span className="absolute  h-2.5 w-2.5 rounded-xl left-[5px] transition-all duration-500 peer-checked:bg-white"></span>
+                <span className="ml-2">Credit Card</span>
+              </label>
+              <label className="inline-flex items-center mt-2 relative">
+                <input
+                  type="radio"
+                  className="form-radio peer appearance-none h-5 w-5 text-green-600"
+                  name="payment"
+                />
+                <span className="absolute  h-5 w-5 rounded-xl border transition-all duration-500 border-black peer-checked:bg-green-500 peer-checked:border-none"></span>
+                <span className="absolute  h-2.5 w-2.5 rounded-xl left-[5px] transition-all duration-500 peer-checked:bg-white"></span>
+                <span className="ml-2">Pay Pal</span>
+              </label>
+            </div>
+          </div>
         <div className="w-full">
             <form className="flex flex-wrap gap-3 w-full p-5">
               <label className="relative w-full flex flex-col">
@@ -99,5 +189,55 @@ export default function PaymentForm(){
               </label>
             </form>
         </div>
+        <div className="w-full p-5">
+            <h1 className="text-2xl font-bold">Personal Information</h1>
+            <div className="w-full flex justify-between gap-10 mt-5 font-medium">
+              <label htmlFor="firstname" className="flex flex-col w-1/2">
+                First Name
+                <input
+                  type="text"
+                  name="firstname"
+                  id="firstname"
+                  placeholder="First Name"
+                  className="w-full p-2 mt-2 rounded-xl bg-gray-100 font-normal"
+                />
+              </label>
+              <label htmlFor="lastname" className="flex flex-col w-1/2">
+                Last Name
+                <input
+                  type="text"
+                  name="lastname"
+                  id="lastname"
+                  placeholder="Last Name"
+                  className="w-full p-2 mt-2 rounded-xl bg-gray-100 font-normal"
+                />
+              </label>
+            </div>
+            <label htmlFor="email" className="flex flex-col font-medium mt-3">
+              Email Address
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email Address"
+                className="w-full p-2 mt-2 rounded-xl bg-gray-100 font-normal"
+              />
+            </label>
+          </div>
+          <div className="flex flex-col min-[500px]:flex-row justify-between w-full p-5 max-[500px]:gap-4 min-[500px]:items-center">
+            <h1 className="text-2xl font-bold">
+              Donation Total:{" "}
+              <span className="text-green-500">${displayedAmount || 0}</span>
+            </h1>
+            <button
+              onClick={() => {
+                console.log(displayedAmount);
+              }}
+              className="bg-green-500 text-white text-lg font-bold rounded-3xl max-[550px]:px-5 px-12 py-4 transition-transform transform hover:scale-105 hover:bg-green-600"
+            >
+              DONATE NOW
+            </button>
+          </div>
+      </div>
     )
 }
