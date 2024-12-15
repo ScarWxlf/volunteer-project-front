@@ -15,19 +15,12 @@ export default function SignUpPage() {
 
   const [errorResponseMessage, setErrorResponseMessage] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
-
-  const [firstNameError, setFirstNameError] = useState("");
-  const [lastNameError, setLastNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const clearMessages = () => {
     setErrorResponseMessage("");
     setResponseMessage("");
-    setEmailError("");
-    setPasswordError("");
-    setFirstNameError("");
-    setLastNameError("");
+    setErrors({});
   };
 
   const handleSubmit = () => {
@@ -40,27 +33,8 @@ export default function SignUpPage() {
     });
       if (isValid) {
         Register({email, password, firstName, lastName, setResponseMessage, setErrorResponseMessage})
-      } else {
-        errors!.forEach((err) => {
-          const key = Object.keys(err)[0];
-          const value = Object.values(err)[0];
-          switch (key) {
-            case "firstName":
-              setFirstNameError(value);
-              break;
-            case "lastName":
-              setLastNameError(value);
-              break;
-            case "email":
-              setEmailError(value);
-              break;
-            case "password":
-              setPasswordError(value);
-              break;
-            default:
-              console.log(`Unexpected validation error: ${value}`);
-          }
-      });
+      } else if(errors) {
+        setErrors(errors)
     }
   };
 
@@ -96,8 +70,8 @@ export default function SignUpPage() {
         <div>
           <div className="mb-4 relative">
             <p className="mb-1">
-              {firstNameError && (
-                <span className="text-red-500">{firstNameError}</span>
+              {errors.firstName && (
+                <span className="text-red-500">{errors.firstName}</span>
               )}
             </p>
             <input
@@ -112,8 +86,8 @@ export default function SignUpPage() {
           </div>
           <div className="mb-4 relative">
             <p className="mb-1">
-              {lastNameError && (
-                <span className="text-red-500">{lastNameError}</span>
+              {errors.lastName && (
+                <span className="text-red-500">{errors.lastName}</span>
               )}
             </p>
             <input
@@ -128,7 +102,7 @@ export default function SignUpPage() {
           </div>
           <div className="mb-4 relative">
             <p className="mb-1">
-              {emailError && <span className="text-red-500">{emailError}</span>}
+              {errors.email && <span className="text-red-500">{errors.email}</span>}
             </p>
             <input
               onChange={(e) => {
@@ -142,8 +116,8 @@ export default function SignUpPage() {
           </div>
           <div className="mb-4 relative">
             <p className="mb-1">
-              {passwordError && (
-                <span className="text-red-500">{passwordError}</span>
+              {errors.password && (
+                <span className="text-red-500">{errors.password}</span>
               )}
             </p>
             <input

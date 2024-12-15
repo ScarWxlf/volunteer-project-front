@@ -33,12 +33,10 @@ export const useValidation = () => {
     const { error } = schema.validate(fields, { abortEarly: false });
 
     if (error) {
-      const fieldErrors: Array<object> = [];
+      const fieldErrors: Record<string, string> = {};
       error.details.forEach((err) => {
         if (err.context && err.context.key) {
-          fieldErrors.push({
-            [err.context.key]: err.message,
-          });
+            fieldErrors[err.context.key] = err.message;
         }
       });
       return { errors: fieldErrors, isValid: false };
