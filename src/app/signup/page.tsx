@@ -39,10 +39,8 @@ export default function SignUpPage() {
       password,
     });
       if (isValid) {
-        console.log("Validation passed");
-        Register({email, password, firstName, lastName, clearMessages, setResponseMessage, setErrorResponseMessage})
+        Register({email, password, firstName, lastName, setResponseMessage, setErrorResponseMessage})
       } else {
-        console.log("Validation failed:", errors);
         errors!.forEach((err) => {
           const key = Object.keys(err)[0];
           const value = Object.values(err)[0];

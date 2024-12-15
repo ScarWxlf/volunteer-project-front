@@ -3,7 +3,6 @@ interface Auth {
   password?: string;
   firstName?: string;
   lastName?: string;
-  clearMessages: () => void;
   setResponseMessage: (message: string) => void;
   setErrorResponseMessage: (message: string) => void;
 }
@@ -11,11 +10,9 @@ interface Auth {
 export async function Login({
   email,
   password,
-  clearMessages,
   setResponseMessage,
   setErrorResponseMessage,
 }: Auth) {
-  clearMessages();
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`,
@@ -56,12 +53,9 @@ export async function Register({
   lastName,
   email,
   password,
-  clearMessages,
   setResponseMessage,
   setErrorResponseMessage
 }: Auth) {
-  clearMessages();
-  console.log("Registering user...");
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/register`,
