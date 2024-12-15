@@ -6,7 +6,6 @@ interface Auth {
   clearMessages: () => void;
   setResponseMessage: (message: string) => void;
   setErrorResponseMessage: (message: string) => void;
-  validateFields?: () => boolean;
 }
 
 export async function Login({
@@ -59,12 +58,10 @@ export async function Register({
   password,
   clearMessages,
   setResponseMessage,
-  setErrorResponseMessage,
-  validateFields,
+  setErrorResponseMessage
 }: Auth) {
   clearMessages();
-
-  if (validateFields && !validateFields()) return;
+  console.log("Registering user...");
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/register`,
