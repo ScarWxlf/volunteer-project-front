@@ -1,12 +1,25 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSectionObserver } from "@/hooks/useSectionObserver ";
 import ProfileCard from "./ProfileInputCard";
+import { GetUser } from "@/lib/api/user";
+import { redirect } from "next/navigation";
+import { useAuth } from "@/components/AuthContext";
 
 export default function Profile() {
+  interface User {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    password?: string;
+    photo?: string;
+    description?: string;
+  }
   const [currentHash, setCurrentHash] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<User>({});
 
   const aboutMeRef = useRef<HTMLDivElement>(null);
   const accountNameRef = useRef<HTMLDivElement>(null);
@@ -25,6 +38,24 @@ export default function Profile() {
   const handleClick = (hash: string) => {
     setIsOpen(false);
     setCurrentHash(hash);
+  }
+
+  const isAuth = useAuth();
+  useEffect(() => {
+    async function fetchUser() {
+      if(!isAuth) {
+        redirect("/signin");
+      } else{
+        setLoading(false);
+        const data = await GetUser()
+        console.log(data)
+      }
+    }
+    fetchUser();
+  }, [isAuth]);
+
+  if(loading) {
+    return <div>Loading...</div>
   }
 
   return (

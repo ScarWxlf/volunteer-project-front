@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Register } from "@/lib/auth/auth";
+import { Register } from "@/lib/api/auth";
 import { useValidation } from "@/hooks/useValidation";
 
 export default function SignUpPage() {

@@ -1,17 +1,36 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { Login } from "@/lib/auth/auth";
+import { Login } from "@/lib/api/auth";
+import { useValidation } from "@/hooks/useValidation";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [responseMessage, setResponseMessage] = useState("");
+  
+  const { validateFields } = useValidation();
+
   const [errorResponseMessage, setErrorResponseMessage] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const clearMessages = () => {
-    setResponseMessage("");
     setErrorResponseMessage("");
+    setResponseMessage("");
+    setErrors({});
+  };
+
+  const handleSubmit = () => {
+    clearMessages();
+    const { errors, isValid } = validateFields({
+      email,
+      password,
+    });
+      if (isValid) {
+        Login({email, password, setResponseMessage, setErrorResponseMessage})
+      } else if(errors) {
+        setErrors(errors)
+    }
   };
 
   return (
@@ -42,9 +61,14 @@ export default function SignInPage() {
           </a>
         </p>
         <div>
-          <div className="mb-4">
+        <div className="mb-4">
+            <p className="mb-1">
+              {errors.email && <span className="text-red-500">{errors.email}</span>}
+            </p>
             <input
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               type="email"
               name="email"
               placeholder="Email Address"
@@ -52,6 +76,11 @@ export default function SignInPage() {
             />
           </div>
           <div className="mb-4">
+            <p className="mb-1">
+              {errors.password && (
+                <span className="text-red-500">{errors.password}</span>
+              )}
+            </p>
             <input
               onChange={(e) => setPassword(e.target.value)}
               type="password"
@@ -76,15 +105,7 @@ export default function SignInPage() {
           </p>
           <div className="w-full flex justify-center">
             <button
-              onClick={() => {
-                Login({
-                  email,
-                  password,
-                  clearMessages,
-                  setResponseMessage,
-                  setErrorResponseMessage
-              });
-              }}
+              onClick={handleSubmit}
               className="w-2/3 bg-green-500 text-white py-2 px-4 rounded-md text-lg font-medium hover:bg-green-600 transition-transform transform hover:scale-105"
             >
               Sign In

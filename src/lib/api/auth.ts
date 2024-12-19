@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 interface Auth {
   email?: string;
   password?: string;
@@ -29,11 +31,14 @@ export async function Login({
     );
     const token = response.headers.get("Authorization");
     if (token) {
-      const clearToken = token.replace("Bearer ", "");
-      console.log("Token:", clearToken);
+      Cookies.set("token", token, {
+        path: "/",
+        secure: true,
+        sameSite: "Strict",
+        expires: 7,
+      });
     }
 
-    document.cookie = `token=${token}; path=/;`;
     const data = await response.json();
 
     if (!response.ok) {
@@ -75,8 +80,12 @@ export async function Register({
 
     const token = response.headers.get("Authorization");
     if (token) {
-      const clearToken = token.replace("Bearer ", "");
-      console.log("Token:", clearToken);
+      Cookies.set("token", token, {
+        path: "/",
+        secure: true,
+        sameSite: "Strict",
+        expires: 7,
+      });
     }
 
     const data = await response.json();
