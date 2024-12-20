@@ -1,10 +1,8 @@
-import Gookies from "js-cookie";
+'use server'
+import { cookies } from "next/headers";
 
-export default function checkCookie() {
-    const token = Gookies.get("token");
-    if (!token) {
-        return false;
-    } else {
-        return true;
-    }
+export default async function checkCookie() {
+    const cookieStore = await cookies()
+    const token = cookieStore.get('token')
+    return token !== undefined;
 }

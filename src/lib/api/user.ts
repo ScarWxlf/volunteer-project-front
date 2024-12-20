@@ -1,12 +1,13 @@
 'use server';
-import Cookies from "js-cookie";
+import { cookies } from "next/headers";
 
 export async function GetUser() {
         // {
     //     "email": "my1234@gmail.com",
     //     "password": "123QWe"
     //  }
-  const token = Cookies.get("token");
+  const cookieStore = await cookies()
+  const token = cookieStore.get('token')
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
@@ -14,7 +15,7 @@ export async function GetUser() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${token}`,
+          "Authorization": `Bearer ${token?.value}`,
         },
       }
     );

@@ -5,7 +5,7 @@ interface ProfileCardProps {
   accountNameRef: RefObject<HTMLDivElement>;
   title: string;
   description: string;
-  inputs: { title: string; type: string; name: string; placeholder: string }[];
+  inputs: { title: string; type: string; name: string; placeholder: string; value?: string }[];
 }
 
 export default function ProfileCard({
@@ -35,6 +35,10 @@ export default function ProfileCard({
                   type={input.type}
                   name={input.name}
                   placeholder={input.placeholder}
+                  value={input.value}
+                  onChange={(e)=>{
+                    input.value = e.target.value
+                  }}
                   className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
                 />
               </label>
