@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import { redirect } from 'next/navigation';
 
 interface Auth {
   email?: string;
@@ -45,6 +46,7 @@ export async function Login({
       throw new Error(data.message);
     } else {
       setResponseMessage(data.message);
+      window.location.href = "/";
     }
   } catch (error) {
     setErrorResponseMessage(
@@ -95,10 +97,16 @@ export async function Register({
       throw new Error(data.message);
     } else {
       setResponseMessage(data.message);
+      window.location.href = "/";
     }
   } catch (error) {
     setErrorResponseMessage(
       (error as Error).message || "Something went wrong."
     );
   }
+}
+
+export async function SignOut() {
+  Cookies.remove("token");
+  window.location.href = "/";
 }

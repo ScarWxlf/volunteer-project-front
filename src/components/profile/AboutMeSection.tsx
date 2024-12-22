@@ -28,7 +28,7 @@ export default function AboutMeSection({
   const handleSave = () => {
     saveChanges();
     setIsEditing(!isEditing);
-  }
+  };
 
   return (
     <div
