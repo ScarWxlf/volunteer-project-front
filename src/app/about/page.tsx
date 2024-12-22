@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutUs() {
   return (
@@ -33,9 +34,9 @@ export default function AboutUs() {
             <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
             <p className="text-gray-700">
               Have questions? We’d love to hear from you! Reach out to us{' '}
-              <a href="/contacts" className="text-green-500 underline">
+              <Link href="/contacts" className="text-green-500 underline">
                 Contact Us
-              </a>
+              </Link>
             </p>
           </section>
         </div>

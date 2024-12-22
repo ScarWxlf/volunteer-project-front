@@ -12,7 +12,7 @@ export default function Header() {
     return(
         <div className="flex items-center flex-none md:justify-around justify-between h-20 bg-black text-white relative z-50">
             <Link className='flex text-center gap-1 text-xl font-bold justify-end md:px-0 px-10' href='/'>
-                <Image className='' src={logo} alt="beb"/>
+                <Image src={logo} alt="beb"/>
                 <h1 className='mt-0.5'>CHARITY</h1>
             </Link>
             <div className="w-2/5 md:block hidden lg:w-2/6 xl:w-1/4">
@@ -48,8 +48,8 @@ export default function Header() {
             </div>  
             <div className="md:block hidden">
                 <div className='flex gap-12'>
-                    <a className='link' href="/signin"><button>Sign in</button></a>
-                    <a className='link' href="/signup"><button>Sign up</button></a>
+                    <Link className='link' href="/signin"><button>Sign in</button></Link>
+                    <Link className='link' href="/signup"><button>Sign up</button></Link>
                 </div>
             </div>
             {mobileMenuOpen && <div className='w-full top-20 flex gap-32 justify-center absolute bg-black border-t border-white z-20 py-8 sm:px-20 px-4'>
@@ -60,8 +60,8 @@ export default function Header() {
                     <Link className={`border-green-500 ${pathname === '/contacts' ? 'border-b-[3px] text-green-500' : 'link'}`} href='/contacts'>Contact us</Link>
                 </div>
                 <div className='flex flex-col gap-6 sm:text-xl text-md justify-center items-center'>
-                    <a className='link' href="/signin"><button>Sign in</button></a>
-                    <a className='link' href="/signup"><button>Sign up</button></a>
+                    <Link className='link' href="/signin"><button>Sign in</button></Link>
+                    <Link className='link' href="/signup"><button>Sign up</button></Link>
                 </div>
             </div>}
         </div>

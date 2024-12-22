@@ -20,6 +20,13 @@ export default function ProfileComp({user}: {user: User}) {
     { ref: changePasswordRef, id: "#change-password" },
   ];
 
+  const [userData, setUserData] = useState(user);
+  const [updatedUser, setUpdatedUser] = useState<Partial<User>>({});
+
+  const handleInputChange = (name: string, value: string) => {
+    setUserData((prev) => ({ ...prev, [name]: value }));
+    setUpdatedUser((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <div className="flex flex-col lg:flex-row w-full xl:px-32 lg:px-16 max-[530px]:px-2 max-[530px]:py-4 px-10 py-9 bg-gray-100 gap-5 lg:items-start">
@@ -31,11 +38,13 @@ export default function ProfileComp({user}: {user: User}) {
         setCurrentHash={setCurrentHash}
       />
       <MainContent 
-        user={user}
+        user={userData}
+        updatedUser={updatedUser}
         aboutMeRef={aboutMeRef}
         accountNameRef={accountNameRef}
         editProfileRef={editProfileRef}
         changePasswordRef={changePasswordRef}
+        onChange={handleInputChange}
       />
     </div>
   );

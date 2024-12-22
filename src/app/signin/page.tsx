@@ -53,12 +53,12 @@ export default function SignInPage() {
         <h1 className="text-4xl font-bold mb-4 text-center">Welcome Back</h1>
         <p className="mt-4 mb-8 text-center">
           Don’t have an account?{" "}
-          <a
+          <Link
             href="/signup"
             className="text-green-500 font-medium hover:underline"
           >
             Sign Up
-          </a>
+          </Link>
         </p>
         <div>
         <div className="mb-4">
@@ -114,12 +114,12 @@ export default function SignInPage() {
         </div>
         <p className="mt-4 text-center">
           Forgot your password?{" "}
-          <a
+          <Link
             href="/reset-password"
             className="text-green-500 font-medium hover:underline"
           >
             Reset it here
-          </a>
+          </Link>
         </p>
         <div className="w-full flex flex-col items-center mt-6">
           <div className="flex items-center justify-center w-full my-4">

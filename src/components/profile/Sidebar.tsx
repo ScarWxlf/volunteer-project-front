@@ -1,6 +1,7 @@
 "use client";
 import { useSectionObserver } from "@/hooks/useSectionObserver ";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface Section {
     ref: React.RefObject<HTMLElement>;
@@ -32,7 +33,7 @@ export default function Sidebar({
           currentHash === "#about-me" ? "About me" : currentHash === "#account-name" ? "Account Name" : currentHash === "#edit-profile" ? "Edit Profile" : "Change Password"
         }</button>
         <div className={`m-5 max-[530px]:grid-cols-2 max-[380px]:grid-cols-1 sm:flex-row lg:flex-col flex-row justify-between gap-5 flex ${isOpen ? "max-[530px]:grid" : "max-[380px]:hidden"}`}>
-          <a
+          <Link
             onClick={() => {
                 setCurrentHash("#about-me")
                 setIsOpen(false)
@@ -53,8 +54,8 @@ export default function Sidebar({
               <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0m2 5.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12s5 1.755 5 1.755" />
             </svg>
             About me
-          </a>
-          <a
+          </Link>
+          <Link
             onClick={() => {
                 setCurrentHash("#account-name")
                 setIsOpen(false)
@@ -76,8 +77,8 @@ export default function Sidebar({
               <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
             </svg>
             Account Name
-          </a>
-          <a
+          </Link>
+          <Link
             onClick={() => {
                 setCurrentHash("#edit-profile")
                 setIsOpen(false)
@@ -98,8 +99,8 @@ export default function Sidebar({
               <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
             </svg>
             Edit Profile
-          </a>
-          <a
+          </Link>
+          <Link
             onClick={() => {
                 setCurrentHash("#change-password")
                 setIsOpen(false)
@@ -120,7 +121,7 @@ export default function Sidebar({
               <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
             </svg>
             Change Password
-          </a>
+          </Link>
         </div>
       </div>
   );

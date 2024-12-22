@@ -124,11 +124,11 @@ export default function Home() {
               />
             </div>
             <div className="w-full h-full items-center top-1 left-1 sm:top-1 sm:left-1 md:top-2 md:left-2 flex absolute justify-center">
-              <a href="/contacts" className="w-full h-full flex justify-center items-center">
+              <Link href="/contacts" className="w-full h-full flex justify-center items-center">
               <button className="w-[40%] sm:w-1/2 h-[14%] sm:h-1/6 md:h-1/5 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition text-sm md:text-md lg:text-xl hover:scale-105">
                 Contact Us
               </button>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="w-1/4 sm:w-1/3 containerSvg">

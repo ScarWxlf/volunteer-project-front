@@ -6,6 +6,8 @@ interface ProfileCardProps {
   title: string;
   description: string;
   inputs: { title: string; type: string; name: string; placeholder: string; value?: string }[];
+  onChange: (name: string, value: string) => void;
+  saveChanges?: () => void;
 }
 
 export default function ProfileCard({
@@ -14,6 +16,8 @@ export default function ProfileCard({
   title,
   description,
   inputs,
+  onChange,
+  saveChanges
 }: ProfileCardProps) {
   return (
     <div
@@ -26,7 +30,7 @@ export default function ProfileCard({
           <h1 className="text-3xl font-bold mb-3">{title}</h1>
           <p>{description}</p>
         </div>
-        <form action="" className="w-3/5 max-[700px]:w-full max-[700px]:px-0 px-8 xl:px-20 py-3">
+        <div className="w-3/5 max-[700px]:w-full max-[700px]:px-0 px-8 xl:px-20 py-3">
           {inputs.map((input, index) => (
             <div className="flex w-full mb-4 gap-5" key={index}>
               <label htmlFor="" className="w-full">
@@ -36,9 +40,8 @@ export default function ProfileCard({
                   name={input.name}
                   placeholder={input.placeholder}
                   value={input.value}
-                  onChange={(e)=>{
-                    input.value = e.target.value
-                  }}
+                  onChange={(e) => onChange(input.name, e.target.value)}
+                  autoComplete="off"
                   className="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
                 />
               </label>
@@ -46,13 +49,13 @@ export default function ProfileCard({
           ))}
           <div className="w-full flex justify-center max-[700px]:justify-end">
             <button
-              type="submit"
+              onClick={saveChanges}
               className="px-10 bg-green-500 text-white py-2 rounded-md font-bold hover:bg-green-600 transition hover:scale-105"
             >
               Save changes
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

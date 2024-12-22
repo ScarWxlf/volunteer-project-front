@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { RefObject } from "react";
+import { useState } from "react";
+
+import { Button } from "../Button";
 
 export default function AboutMeSection({
   ref,
@@ -8,6 +11,8 @@ export default function AboutMeSection({
   email,
   description,
   photo,
+  onChange,
+  saveChanges,
 }: {
   ref: RefObject<HTMLDivElement>;
   firstName: string;
@@ -15,7 +20,16 @@ export default function AboutMeSection({
   email: string;
   description: string;
   photo: string;
+  onChange: (name: string, value: string) => void;
+  saveChanges: () => void;
 }) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleSave = () => {
+    saveChanges();
+    setIsEditing(!isEditing);
+  }
+
   return (
     <div
       id="about-me"
@@ -37,7 +51,7 @@ export default function AboutMeSection({
               alt="edit"
               width={30}
               height={30}
-              className=""
+              className="h-7 w-7"
             />
             <span className="absolute  bottom-6 right-7 font-bold text-2xl text-white">
               +
@@ -58,10 +72,20 @@ export default function AboutMeSection({
           </button>
         </div>
       </div>
-      <div className="my-5">
+      <div className="flex flex-col my-5">
         <h1 className="text-3xl">About me</h1>
-        <p className="mt-2">
-          {description ? (
+        <p className="mt-2 break-words">
+          {isEditing ? (
+            <textarea
+              name="description"
+              id="description"
+              value={description || ""}
+              onChange={(e) => {
+                onChange("description", e.target.value);
+              }}
+              className="w-full max-h-60 py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
+            />
+          ) : description ? (
             description
           ) : (
             <span className="text-xl">
@@ -70,6 +94,18 @@ export default function AboutMeSection({
             </span>
           )}
         </p>
+      </div>
+      <div className="w-full flex justify-end">
+        {isEditing ? (
+          <div className="flex max-[320px]:flex-col gap-3">
+            <Button variant="cancel" onClick={() => setIsEditing(!isEditing)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSave}>Save</Button>
+          </div>
+        ) : (
+          <Button onClick={() => setIsEditing(!isEditing)}>Edit</Button>
+        )}
       </div>
     </div>
   );

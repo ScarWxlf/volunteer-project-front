@@ -60,12 +60,12 @@ export default function SignUpPage() {
         </h1>
         <p className="mt-4 mb-8 text-center">
           Already have an Account?{" "}
-          <a
+          <Link
             href="/signin"
             className="text-green-500 font-medium hover:underline"
           >
             Sign In
-          </a>
+          </Link>
         </p>
         <div>
           <div className="mb-4 relative">

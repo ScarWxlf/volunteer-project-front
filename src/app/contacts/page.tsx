@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function ContactUs() {
     return (
       <div className="flex p-8 bg-gray-100">
@@ -15,9 +17,9 @@ export default function ContactUs() {
               </p>
               <p className="mt-4 text-gray-700">
                 <strong>Email:</strong>{' '}
-                <a href="mailto:contact@yourcompany.com" className="text-green-500 underline">
+                <Link href="mailto:contact@yourcompany.com" className="text-green-500 underline">
                   contact@yourcompany.com
-                </a>
+                </Link>
               </p>
               <p className="mt-2 text-gray-700">
                 <strong>Phone:</strong> +1 234 567 890
