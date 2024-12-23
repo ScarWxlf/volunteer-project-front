@@ -2,7 +2,6 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Menu from "./menu";
-import { User } from "@/lib/types";
 
 export default function Header({ isAuth, userPhoto }: { isAuth: boolean, userPhoto: string }) {
   const pathname = usePathname();

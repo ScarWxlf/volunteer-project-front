@@ -12,8 +12,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-white py-10">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
+      <div className="xl:mx-20 lg:mx-14 md:mx-8 mx-4 px-4">
+        <div className="flex flex-col lg:flex-row justify-around gap-8 lg:gap-16">
           <div className="flex flex-col gap-3 lg:w-1/4">
             <div className="flex items-center gap-2">
               <Image src={logo} alt="logo" width={20} height={20} />
@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 w-full lg:w-3/4">
+          <div className="flex flex-row gap-32 lg:w-1/2 max-[400px]:gap-10 lg:justify-around">
             <div className="flex flex-col gap-3">
               <h1 className="text-lg font-semibold">About us</h1>
               <ul className="text-sm space-y-1">
