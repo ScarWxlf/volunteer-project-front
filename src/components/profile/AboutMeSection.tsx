@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { RefObject } from "react";
+import { LegacyRef } from "react";
 import { useState } from "react";
 
 import { Button } from "../Button";
+import { User } from "@/lib/types";
 
 export default function AboutMeSection({
   ref,
@@ -13,27 +14,37 @@ export default function AboutMeSection({
   photo,
   onChange,
   saveChanges,
+  errors,
+  setErrors,
 }: {
-  ref: RefObject<HTMLDivElement>;
+  ref: LegacyRef<HTMLFormElement>;
   firstName: string;
   lastName: string;
   email: string;
   description: string;
   photo: string;
   onChange: (name: string, value: string) => void;
-  saveChanges: () => void;
+  saveChanges: (requestBody: Partial<User>) => Promise<{ [key: string]: string }>;
+  errors: { [key: string]: string };
+  setErrors: (errors: { [key: string]: string }) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleSave = () => {
-    saveChanges();
+  async function handleSave(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const input1 = formData.get(`description`)
+    console.log(input1)
+    const err = await saveChanges({description: input1 as string}) || {}
+    setErrors(err)
     setIsEditing(!isEditing);
   };
 
   return (
-    <div
+    <form
       id="about-me"
       ref={ref}
+      onSubmit={handleSave}
       className="w-full shadow-lg rounded-lg bg-white max-[530px]:p-5 p-10 pt-20 max-[800px]:pt-10 md:pt-10"
     >
       <div className="flex max-[800px]:flex-col gap-8 w-full items-center justify-between">
@@ -80,6 +91,7 @@ export default function AboutMeSection({
               name="description"
               id="description"
               value={description || ""}
+              maxLength={500}
               onChange={(e) => {
                 onChange("description", e.target.value);
               }}
@@ -101,12 +113,12 @@ export default function AboutMeSection({
             <Button variant="cancel" onClick={() => setIsEditing(!isEditing)}>
               Cancel
             </Button>
-            <Button onClick={handleSave}>Save</Button>
+            <Button type="submit" >Save</Button>
           </div>
         ) : (
           <Button onClick={() => setIsEditing(!isEditing)}>Edit</Button>
         )}
       </div>
-    </div>
+    </form>
   );
 }

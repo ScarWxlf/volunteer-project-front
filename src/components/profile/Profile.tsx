@@ -8,10 +8,10 @@ export default function ProfileComp({user}: {user: User}) {
   const [currentHash, setCurrentHash] = useState<string>("#about-me");
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
-  const aboutMeRef = useRef<HTMLDivElement>(null);
-  const accountNameRef = useRef<HTMLDivElement>(null);
-  const editProfileRef = useRef<HTMLDivElement>(null);
-  const changePasswordRef = useRef<HTMLDivElement>(null);
+  const aboutMeRef = useRef<HTMLFormElement>(null);
+  const accountNameRef = useRef<HTMLFormElement>(null);
+  const editProfileRef = useRef<HTMLFormElement>(null);
+  const changePasswordRef = useRef<HTMLFormElement>(null);
 
   const sections = [
     { ref: aboutMeRef, id: "#about-me" },
@@ -21,11 +21,10 @@ export default function ProfileComp({user}: {user: User}) {
   ];
 
   const [userData, setUserData] = useState(user);
-  const [updatedUser, setUpdatedUser] = useState<Partial<User>>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
   const handleInputChange = (name: string, value: string) => {
     setUserData((prev) => ({ ...prev, [name]: value }));
-    setUpdatedUser((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -39,12 +38,13 @@ export default function ProfileComp({user}: {user: User}) {
       />
       <MainContent 
         user={userData}
-        updatedUser={updatedUser}
         aboutMeRef={aboutMeRef}
         accountNameRef={accountNameRef}
         editProfileRef={editProfileRef}
         changePasswordRef={changePasswordRef}
         onChange={handleInputChange}
+        errors={errors}
+        setErrors={setErrors}
       />
     </div>
   );

@@ -1,10 +1,11 @@
 import { User } from "@/lib/types";
 import AboutMeSection from "./AboutMeSection";
 import ProfileCard from "./ProfileInputCard";
-import { RefObject } from "react";
+import { LegacyRef } from "react";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import { redirect } from "next/navigation";
+import { useValidation } from "@/hooks/useValidation";
 
 export default function MainContent({
   aboutMeRef,
@@ -12,16 +13,18 @@ export default function MainContent({
   editProfileRef,
   changePasswordRef,
   user,
-  updatedUser,
   onChange,
+  errors, 
+  setErrors
 }: {
-  aboutMeRef: RefObject<HTMLDivElement>;
-  accountNameRef: RefObject<HTMLDivElement>;
-  editProfileRef: RefObject<HTMLDivElement>;
-  changePasswordRef: RefObject<HTMLDivElement>;
+  aboutMeRef: LegacyRef<HTMLFormElement>;
+  accountNameRef: LegacyRef<HTMLFormElement>;
+  editProfileRef: LegacyRef<HTMLFormElement>;
+  changePasswordRef: LegacyRef<HTMLFormElement>;
   user: User;
-  updatedUser: Partial<User>;
   onChange: (name: string, value: string) => void;
+  errors: { [key: string]: string };
+  setErrors: (errors: { [key: string]: string }) => void;
 }) {
   const notify = (message: string) =>
     toast.success(message, {
@@ -33,12 +36,20 @@ export default function MainContent({
       position: "bottom-right",
     });
 
-  async function updateUserProfile() {
+  const {validateFields} = useValidation();
+
+  async function updateUserProfile(requestBody: Partial<User>) {
     const token = Cookies.get("token");
     if (!token) {
       redirect("/signin");
-      return;
     }
+
+    const {errors, isValid} = validateFields(requestBody);
+    if (!isValid) {
+      return errors;
+    }
+    console.log('okey', requestBody)
+    return;
 
     try {
       const response = await fetch(
@@ -49,7 +60,7 @@ export default function MainContent({
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(updatedUser),
+          body: JSON.stringify(requestBody),
         }
       );
 
@@ -77,10 +88,12 @@ export default function MainContent({
         photo={user.photo}
         onChange={onChange}
         saveChanges={updateUserProfile}
+        errors={errors}
+        setErrors={setErrors}
       />
       <ProfileCard
         id="account-name"
-        accountNameRef={accountNameRef}
+        ref={accountNameRef}
         title="Account name"
         description="Update your first and last name to help people recognize you."
         inputs={[
@@ -101,10 +114,12 @@ export default function MainContent({
         ]}
         onChange={onChange}
         saveChanges={updateUserProfile}
+        errors={errors}
+        setErrors={setErrors}
       />
       <ProfileCard
         id="edit-profile"
-        accountNameRef={editProfileRef}
+        ref={editProfileRef}
         title="Edit profile"
         description="Update your email and phone number to help secure your account."
         inputs={[
@@ -125,17 +140,19 @@ export default function MainContent({
         ]}
         onChange={onChange}
         saveChanges={updateUserProfile}
+        errors={errors}
+        setErrors={setErrors}
       />
       <ProfileCard
         id="change-password"
-        accountNameRef={changePasswordRef}
+        ref={changePasswordRef}
         title="Change password"
         description="We recommend that you periodically update your password to help prevent unauthorized access to your account."
         inputs={[
           {
             title: "Previous password",
             type: "password",
-            name: "previous-password",
+            name: "previousPassword",
             placeholder: "Previous password",
           },
           {
@@ -147,6 +164,8 @@ export default function MainContent({
         ]}
         onChange={onChange}
         saveChanges={updateUserProfile}
+        errors={errors}
+        setErrors={setErrors}
       />
       <ToastContainer autoClose={3000} />
     </div>
