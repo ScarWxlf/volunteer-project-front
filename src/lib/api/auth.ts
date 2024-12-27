@@ -1,19 +1,16 @@
 import Cookies from 'js-cookie'
-import { redirect } from 'next/navigation';
 
 interface Auth {
   email?: string;
   password?: string;
   firstName?: string;
   lastName?: string;
-  setResponseMessage: (message: string) => void;
   setErrorResponseMessage: (message: string) => void;
 }
 
 export async function Login({
   email,
   password,
-  setResponseMessage,
   setErrorResponseMessage,
 }: Auth) {
   try {
@@ -45,8 +42,7 @@ export async function Login({
     if (!response.ok) {
       throw new Error(data.message);
     } else {
-      setResponseMessage(data.message);
-      window.location.href = "/";
+      return data.message;
     }
   } catch (error) {
     setErrorResponseMessage(
@@ -60,7 +56,6 @@ export async function Register({
   lastName,
   email,
   password,
-  setResponseMessage,
   setErrorResponseMessage
 }: Auth) {
   try {
@@ -96,8 +91,7 @@ export async function Register({
       console.log(data);
       throw new Error(data.message);
     } else {
-      setResponseMessage(data.message);
-      window.location.href = "/";
+      return data.message;
     }
   } catch (error) {
     setErrorResponseMessage(

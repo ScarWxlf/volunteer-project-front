@@ -3,8 +3,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { Register } from "@/lib/api/auth";
 import { useValidation } from "@/hooks/useValidation";
+import { useNotificationStore } from "@/store/notificationStore";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
+  const router = useRouter();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,17 +17,16 @@ export default function SignUpPage() {
 
   const { validateFields } = useValidation();
 
+  const setMessage = useNotificationStore((state) => state.setMessage);
   const [errorResponseMessage, setErrorResponseMessage] = useState("");
-  const [responseMessage, setResponseMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const clearMessages = () => {
     setErrorResponseMessage("");
-    setResponseMessage("");
     setErrors({});
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     clearMessages();
     const { errors, isValid } = validateFields({
       firstName,
@@ -32,7 +35,10 @@ export default function SignUpPage() {
       password,
     });
       if (isValid) {
-        Register({email, password, firstName, lastName, setResponseMessage, setErrorResponseMessage})
+        const message = await Register({email, password, firstName, lastName, setErrorResponseMessage})
+        setMessage(message)
+        router.push("/")
+        router.refresh()
       } else if(errors) {
         setErrors(errors)
     }
@@ -130,13 +136,6 @@ export default function SignUpPage() {
               className="w-full py-2 px-4 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
             />
           </div>
-          <p
-            className={`${
-              responseMessage ? "" : "collapse"
-            } text-center text-green-500 mb-2`}
-          >
-            {responseMessage || " "}
-          </p>
           <p
             className={`${
               errorResponseMessage ? "" : "collapse"

@@ -48,9 +48,6 @@ export default function MainContent({
     if (!isValid) {
       return errors;
     }
-    console.log('okey', requestBody)
-    return;
-
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
