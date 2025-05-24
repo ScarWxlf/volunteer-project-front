@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function PaymentForm(){
   const [amount, setAmount] = useState<number>(0);
@@ -20,27 +21,38 @@ export default function PaymentForm(){
       <div className="w-full">
         <div className="w-full">
             <h1 className="text-2xl font-bold w-2/3 p-5">Donation amount</h1>
-            <div className="flex flex-wrap gap-3 sm:gap-6 w-full lg:w-2/3 p-5">
-              {[10, 25, 50, 100, 500, 1].map((value) => (
-                <label
-                  key={value}
-                  className={`inline-flex items-center border-2 border-black rounded-3xl px-5 py-2 hover:bg-green-500 hover:text-white hover:border-none hover:mx-[1.6px] ${
-                    amount === value &&
-                    "bg-green-600 text-white border-none mx-[1.6px]"
-                  }`}
-                >
-                  <input
-                    className="hidden"
-                    type="radio"
-                    name="amount"
-                    value={value}
-                    onChange={() => {handleSetAmount(value)}}
-                  />
-                  <span className="">
-                    {value === 1 ? "Custom" : `$${value}`}
-                  </span>
-                </label>
-              ))}
+            <div className="flex flex-wrap w-full lg:w-2/3 p-5">
+              {[10, 25, 50, 100, 500, 1].map((value) => {
+                const isActive = amount === value;
+                return (
+                  <label
+                    key={value}
+                    className="relative inline-flex items-center justify-center px-5 py-2 m-1 cursor-pointer"
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="amount-highlight"
+                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                        className="absolute inset-0 bg-green-600 rounded-md z-0"
+                      />
+                    )}
+                    <input
+                      className="hidden"
+                      type="radio"
+                      name="amount"
+                      value={value}
+                      onChange={() => handleSetAmount(value)}
+                    />
+                    <span
+                      className={`relative z-10 font-medium ${
+                        isActive ? "text-white" : "text-black"
+                      }`}
+                    >
+                      {value === 1 ? "Custom" : `$${value}`}
+                    </span>
+                  </label>
+                );
+              })}
             </div>
             <div className={`relative w-44 ml-4`}>
               <input
@@ -51,7 +63,7 @@ export default function PaymentForm(){
                 }}
                 onChange={(e) => {
                   const target = e.target as HTMLInputElement;
-                  if (target.value === "") return setCustomAmount('0');
+                  if (target.value === "") return setCustomAmount('');
                   setCustomAmount(target.value);
                 }}
                 type="number"
